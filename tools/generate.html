@@ -23,9 +23,7 @@
 ══════════════════════════════════════ */
 #pred-card {
   width: 640px;
-  height: 640px;
   max-width: 98vw;
-  aspect-ratio: 1 / 1;
   margin: 0 auto 24px;
   font-family: 'Oswald', 'Inter', sans-serif;
   position: relative;
@@ -629,11 +627,16 @@
       scale: 2,
       useCORS: true,
       allowTaint: true,
-      logging: false,
-      width: 560,
-      height: 560
+      logging: false
     }).then(canvas => {
-      lastDataUrl = canvas.toDataURL('image/png');
+      // Crop tengah ke 1:1 square
+      const size = canvas.width;
+      const sq = document.createElement('canvas');
+      sq.width = size; sq.height = size;
+      const ctx = sq.getContext('2d');
+      const offsetY = Math.max(0, (canvas.height - size) / 2);
+      ctx.drawImage(canvas, 0, offsetY, size, size, 0, 0, size, size);
+      lastDataUrl = sq.toDataURL('image/png');
       document.getElementById('btn-download').style.display = 'inline-flex';
       document.getElementById('btn-copy').style.display     = 'inline-flex';
       document.getElementById('btn-newtab').style.display   = 'inline-flex';
