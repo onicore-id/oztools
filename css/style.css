@@ -1,27 +1,76 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Cinzel:wght@700;900&display=swap');
 
 *{margin:0;padding:0;box-sizing:border-box;}
 
 :root {
   --bg: #0a0a0a;
-  --surface: #141414;
-  --surface2: #1e1e1e;
-  --border: #2a2a2a;
+  --surface: rgba(255,255,255,0.05);
+  --surface2: rgba(255,255,255,0.08);
+  --border: rgba(255,255,255,0.12);
   --text: #ffffff;
-  --text2: #a0a0a0;
+  --text2: #c0c0c0;
   --accent: #3B82F6;
   --danger: #ef4444;
-  --radius: 12px;
-  --radius-sm: 8px;
+  --radius: 14px;
+  --radius-sm: 10px;
+  --glass-bg: rgba(10,10,10,0.45);
+  --glass-border: rgba(255,255,255,0.13);
+  --glass-shadow: 0 8px 32px rgba(0,0,0,0.5);
 }
 
 body {
   font-family: 'Inter', system-ui, sans-serif;
-  background: var(--bg);
+  background-color: #060a0f;
+  background-image: url('https://i.ibb.co/TxWCGbpT/oztools-bg.webp');
+  background-size: cover;
+  background-position: center top;
+  background-attachment: fixed;
   color: var(--text);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+}
+
+/* Glass overlay on body for depth */
+body::before {
+  content:'';
+  position:fixed;
+  inset:0;
+  background: rgba(5,8,15,0.55);
+  z-index:0;
+  pointer-events:none;
+}
+
+/* All direct children of body above overlay */
+body > * { position: relative; z-index: 1; }
+
+/* ── GLASSMORPHISM ── */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  border-radius: var(--radius);
+}
+
+.glass-sm {
+  background: rgba(255,255,255,0.06);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.1);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+  border-radius: var(--radius-sm);
+}
+
+/* Shine on top edge */
+.glass::before, .glass-sm::before {
+  content:'';
+  position:absolute;
+  top:0; left:10%; right:10%;
+  height:1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  border-radius: 999px;
 }
 
 /* ── LAYOUT ── */
@@ -54,9 +103,16 @@ body {
 }
 
 .logo {
-  font-size: 32px;
+  font-size: 38px;
   font-weight: 900;
-  letter-spacing: -1px;
+  letter-spacing: 2px;
+  font-family: 'Cinzel', serif;
+  background: linear-gradient(180deg, #ffffff, #c0c0c0, #e8e8e8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: none;
+  filter: drop-shadow(0 2px 8px rgba(255,255,255,0.2));
 }
 
 .logo span { color: var(--accent); }
@@ -89,10 +145,14 @@ body {
 
 /* ── CARD ── */
 .card {
-  background: var(--surface);
-  border: 1px solid var(--border);
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
   border-radius: var(--radius);
   padding: 32px;
+  position: relative;
 }
 
 /* ── MENU GRID ── */
@@ -119,12 +179,14 @@ body {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  background: var(--surface2);
-  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.07);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.13);
   border-radius: var(--radius);
   padding: 28px 16px;
   color: var(--text);
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 700;
   text-decoration: none;
   letter-spacing: 0.5px;
@@ -132,14 +194,16 @@ body {
   cursor: pointer;
   text-align: center;
   min-height: 90px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  position: relative;
 }
 
 .menu-btn:hover {
-  background: var(--accent);
-  border-color: var(--accent);
+  background: rgba(59,130,246,0.35);
+  border-color: rgba(59,130,246,0.6);
   color: #fff;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.5);
 }
 
 .menu-btn .icon {
@@ -180,8 +244,10 @@ input[type=password],
 select,
 textarea {
   width: 100%;
-  background: var(--surface2);
-  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.07);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.15);
   border-radius: var(--radius-sm);
   color: var(--text);
   font-family: inherit;

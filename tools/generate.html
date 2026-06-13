@@ -8,315 +8,321 @@
 <link rel="stylesheet" href="../css/style.css">
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Inter:wght@600;700;800;900&display=swap" rel="stylesheet">
 <style>
+/* ── CONTROLS ── */
 .controls {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
   align-items: flex-end;
-  margin-bottom: 24px;
+  margin-bottom: 28px;
 }
 .controls .form-group { margin-bottom:0; flex:1; min-width:160px; }
 
-/* ── CARD WRAPPER 1:1 ── */
+/* ── PREDICTION CARD ── */
 #pred-card {
-  width: 560px;
-  height: 560px;
-  max-width: 92vw;
-  max-height: 92vw;
-  margin: 0 auto 20px;
-  position: relative;
+  width: 580px;
+  max-width: 98vw;
+  margin: 0 auto 24px;
+  font-family: 'Inter', sans-serif;
   border-radius: 18px;
   overflow: hidden;
-  font-family: 'Inter', sans-serif;
-  box-shadow: 0 0 60px rgba(0,200,80,0.25), 0 8px 40px rgba(0,0,0,0.7);
+  position: relative;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.8);
 }
 
-/* Background */
-.card-bg {
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse at 50% 30%, #1a4a2a 0%, #0d2a18 50%, #071510 100%);
-  z-index: 0;
+.card-wrap {
+  background-image: url('https://i.ibb.co/TxWCGbpT/oztools-bg.webp');
+  background-size: cover;
+  background-position: center;
+  position: relative;
 }
-/* Corner glow */
-.card-bg::before {
+.card-wrap::before {
   content:'';
   position:absolute;
-  top:-60px; left:-60px;
-  width:200px; height:200px;
-  background: radial-gradient(circle, rgba(0,255,100,0.12), transparent 70%);
+  inset:0;
+  background: rgba(4,8,18,0.72);
 }
-.card-bg::after {
-  content:'';
-  position:absolute;
-  bottom:-60px; right:-60px;
-  width:200px; height:200px;
-  background: radial-gradient(circle, rgba(0,255,100,0.12), transparent 70%);
-}
-
-/* All content above bg */
 .card-inner {
   position: relative;
   z-index: 1;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  padding: 14px 16px 12px;
-  box-sizing: border-box;
+  padding: 22px 22px 18px;
 }
 
-/* Top border glow line */
-.card-inner::before {
-  content:'';
-  position:absolute;
-  top:0; left:0; right:0;
-  height:3px;
-  background: linear-gradient(90deg, transparent, #00ff66, #ffd700, #00ff66, transparent);
-}
-
-/* ── LOGO ── */
+/* ── LOGO ROW ── */
 .c-logo {
   text-align: center;
-  margin-bottom: 6px;
+  margin-bottom: 10px;
 }
 .c-logo img {
-  height: 42px;
-  max-width: 160px;
+  height: 52px;
+  max-width: 180px;
   object-fit: contain;
-  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.6));
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.7));
 }
 .c-logo-text {
   font-family: 'Cinzel', serif;
-  font-size: 22px;
+  font-size: 26px;
   font-weight: 900;
-  background: linear-gradient(180deg, #fff700, #ffaa00, #ff6600);
+  background: linear-gradient(180deg, #ffffff, #aaaaaa, #dddddd);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  text-shadow: none;
-  filter: drop-shadow(0 2px 6px rgba(255,180,0,0.5));
-  letter-spacing: 3px;
+  filter: drop-shadow(0 2px 6px rgba(255,255,255,0.2));
+  letter-spacing: 4px;
 }
 
-/* ── TITLE ── */
-.c-title {
+/* ── PREDIKSI TITLE ── */
+.prediksi-big {
+  font-family: 'Cinzel', serif;
+  font-size: 52px;
+  font-weight: 900;
+  line-height: 1;
+  background: linear-gradient(180deg,
+    #ffffff 0%,
+    #e8e8e8 20%,
+    #b0b0b0 40%,
+    #d8d8d8 60%,
+    #909090 80%,
+    #cccccc 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 3px 10px rgba(255,255,255,0.12));
+  letter-spacing: 8px;
+  text-transform: uppercase;
   text-align: center;
   margin-bottom: 4px;
 }
-.c-prediksi {
+
+/* ── PASARAN NAME ── */
+.c-pasaran-nm {
   font-family: 'Cinzel', serif;
   font-size: 26px;
   font-weight: 900;
-  background: linear-gradient(180deg, #fffde0, #ffd700, #ff9500);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  filter: drop-shadow(0 2px 8px rgba(255,200,0,0.6));
-  letter-spacing: 1px;
-  line-height: 1.1;
+  color: #ffd700;
   text-transform: uppercase;
-}
-.c-date {
-  font-size: 11px;
-  color: rgba(255,255,255,0.6);
-  font-weight: 600;
-  letter-spacing: 1px;
-  margin-top: 2px;
-}
-.c-tanggal {
-  display: inline-block;
-  border: 1px solid rgba(0,255,80,0.4);
-  border-radius: 20px;
-  padding: 3px 14px;
-  font-size: 11px;
-  color: #00ff80;
-  font-weight: 700;
-  letter-spacing: 1px;
-  margin-top: 4px;
-  background: rgba(0,255,80,0.07);
-  box-shadow: 0 0 8px rgba(0,255,80,0.2);
-}
-
-/* ── MAIN GRID ── */
-.c-main {
-  display: grid;
-  grid-template-columns: 1fr 160px 1fr;
-  gap: 8px;
-  flex: 1;
-  margin: 8px 0 6px;
-}
-
-/* Left column */
-.c-left {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-/* Right column */
-.c-right {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-/* Stat box */
-.s-box {
-  background: rgba(0,0,0,0.45);
-  border: 1.5px solid rgba(0,200,60,0.45);
-  border-radius: 10px;
-  padding: 8px 10px;
+  letter-spacing: 3px;
   text-align: center;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  box-shadow: 0 0 10px rgba(0,200,60,0.15), inset 0 0 12px rgba(0,0,0,0.3);
+  text-shadow: 0 0 16px rgba(255,215,0,0.6);
+  margin-bottom: 4px;
 }
-.s-label {
+
+/* ── DATE ── */
+.c-date {
+  text-align: center;
+  font-size: 13px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.65);
+  letter-spacing: 2px;
+  margin-bottom: 14px;
+}
+
+/* ── DIVIDER ── */
+.c-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,215,0,0.6), rgba(255,255,255,0.4), rgba(255,215,0,0.6), transparent);
+  margin: 0 0 14px;
+}
+
+/* ── STATS ROW: BBFS | AI | CB | CM ── */
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.stat-box {
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.13);
+  border-radius: 10px;
+  padding: 9px 6px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.stat-box::before {
+  content:'';
+  position:absolute;
+  top:0; left:8%; right:8%;
+  height:1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent);
+}
+.stat-lbl {
   font-size: 10px;
   font-weight: 800;
   letter-spacing: 2px;
-  color: #ffd700;
+  color: rgba(255,255,255,0.5);
   text-transform: uppercase;
-  margin-bottom: 4px;
-  text-shadow: 0 0 6px rgba(255,215,0,0.5);
+  margin-bottom: 5px;
 }
-.s-value {
-  font-family: 'Cinzel', serif;
-  font-size: 28px;
+.stat-val {
+  font-size: 18px;
   font-weight: 900;
   color: #fff;
-  letter-spacing: 2px;
-  text-shadow: 0 0 12px rgba(255,255,255,0.3);
-  line-height: 1;
+  letter-spacing: 1px;
+  word-break: break-all;
 }
-.s-value.big { font-size: 22px; letter-spacing: 4px; }
-.s-value.medium { font-size: 18px; letter-spacing: 1px; }
-
-/* Center - Shio */
-.c-shio {
-  background: rgba(0,0,0,0.5);
-  border: 1.5px solid rgba(255,215,0,0.4);
-  border-radius: 12px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 8px;
-  box-shadow: 0 0 16px rgba(255,215,0,0.15), inset 0 0 20px rgba(0,0,0,0.4);
-  text-align: center;
-  gap: 4px;
-}
-.shio-lbl {
-  font-size: 9px;
-  font-weight: 800;
+.bbfs-val {
+  font-size: 22px;
   letter-spacing: 3px;
   color: #ffd700;
-  text-transform: uppercase;
-}
-.shio-img {
-  width: 88px;
-  height: 88px;
-  object-fit: contain;
-  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.6));
-}
-.shio-nm {
-  font-family: 'Cinzel', serif;
-  font-size: 13px;
-  font-weight: 700;
-  color: #ffd700;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  text-shadow: 0 0 8px rgba(255,215,0,0.6);
+  text-shadow: 0 0 8px rgba(255,215,0,0.4);
 }
 
-/* ── BOTTOM STATS ── */
-.c-bottom {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 6px;
-  margin-bottom: 6px;
+/* ── BB ROWS ── */
+.bb-wrap {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 8px;
 }
-.b-box {
-  background: rgba(0,0,0,0.45);
-  border: 1px solid rgba(0,200,60,0.35);
-  border-radius: 8px;
-  padding: 6px 4px;
-  text-align: center;
-  box-shadow: 0 0 8px rgba(0,200,60,0.1);
+.bb-row {
+  display: flex;
+  align-items: center;
+  padding: 9px 14px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
 }
-.b-lbl {
-  font-size: 9px;
+.bb-row:last-child { border-bottom: none; }
+.bb-lbl {
+  font-size: 12px;
   font-weight: 800;
   letter-spacing: 1px;
-  color: #ffd700;
+  color: rgba(255,255,255,0.5);
   text-transform: uppercase;
-  margin-bottom: 3px;
+  min-width: 56px;
 }
-.b-val {
-  font-family: 'Cinzel', serif;
-  font-size: 14px;
+.bb-sep {
+  color: rgba(255,255,255,0.2);
+  margin: 0 10px;
+  font-size: 16px;
+}
+.bb-val {
+  font-size: 15px;
   font-weight: 700;
-  color: #fff;
-  letter-spacing: 0.5px;
+  color: #f1f5f9;
+  letter-spacing: 1px;
+  flex: 1;
+}
+
+/* ── SHIO ── */
+.c-shio-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  background: rgba(255,215,0,0.06);
+  border: 1px solid rgba(255,215,0,0.25);
+  border-radius: 10px;
+  padding: 10px 16px;
+  margin-bottom: 8px;
+}
+.shio-img-sm {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.5));
+}
+.shio-lbl-sm {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: rgba(255,255,255,0.5);
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+.shio-nm-sm {
+  font-family: 'Cinzel', serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: #ffd700;
+  text-shadow: 0 0 10px rgba(255,215,0,0.5);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+/* ── TWIN + ANGKA PANAS ── */
+.bottom-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+.bot-box {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 10px;
+  padding: 11px 8px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.bot-box::before {
+  content:'';
+  position:absolute;
+  top:0; left:10%; right:10%;
+  height:1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+}
+.bot-lbl {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: rgba(255,255,255,0.5);
+  text-transform: uppercase;
+  margin-bottom: 5px;
+}
+.bot-val {
+  font-size: 24px;
+  font-weight: 900;
+  color: #ffd700;
+  text-shadow: 0 0 10px rgba(255,215,0,0.5);
+  letter-spacing: 3px;
 }
 
 /* ── FOOTER BANNER ── */
-.c-footer {
-  border: 1px solid rgba(0,200,60,0.4);
+.c-footer-banner {
+  background: rgba(0,0,0,0.35);
+  border: 1px solid rgba(255,255,255,0.07);
   border-radius: 8px;
-  padding: 6px 10px;
+  padding: 9px 12px;
   text-align: center;
-  background: rgba(0,0,0,0.4);
-  box-shadow: 0 0 10px rgba(0,200,60,0.1);
 }
-.c-footer-text {
-  font-size: 10px;
+.c-footer-banner span {
+  font-size: 11px;
   font-weight: 800;
-  letter-spacing: 1px;
-  color: #fff;
+  letter-spacing: 1.5px;
+  color: rgba(255,255,255,0.65);
   text-transform: uppercase;
 }
-.c-footer-text span {
+.c-footer-banner b {
   color: #ffd700;
-  text-shadow: 0 0 6px rgba(255,215,0,0.5);
+  text-shadow: 0 0 6px rgba(255,215,0,0.4);
 }
 
-/* Corner decorations */
-.corner {
-  position: absolute;
-  width: 40px;
-  height: 40px;
-  z-index: 2;
-}
-.corner-tl { top:8px; left:8px; border-top:2px solid #ffd700; border-left:2px solid #ffd700; border-radius:4px 0 0 0; }
-.corner-tr { top:8px; right:8px; border-top:2px solid #ffd700; border-right:2px solid #ffd700; border-radius:0 4px 0 0; }
-.corner-bl { bottom:8px; left:8px; border-bottom:2px solid #ffd700; border-left:2px solid #ffd700; border-radius:0 0 0 4px; }
-.corner-br { bottom:8px; right:8px; border-bottom:2px solid #ffd700; border-right:2px solid #ffd700; border-radius:0 0 4px 0; }
-
-/* Image actions */
+/* ── IMAGE ACTIONS ── */
 .img-actions {
   display: flex;
   gap: 10px;
   justify-content: center;
   flex-wrap: wrap;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
 }
 </style>
 </head>
 <body>
 <div class="page-top">
   <div class="container">
+
     <div class="site-header">
-      <div class="logo" id="logo-title">OZ<span>TOOLS</span> PREDIKSI</div>
+      <div class="logo" id="logo-title">OZ<span>TOOLS</span></div>
       <div class="server-time">Server Time &nbsp;|&nbsp; <strong id="server-time">00:00:00</strong> &nbsp;|&nbsp; GMT +7</div>
     </div>
 
     <a href="#" onclick="history.back();return false" class="back-link">← Kembali</a>
     <div class="page-title" id="page-title">AUTO GENERATE <span>BBFS 7</span></div>
-    <div class="page-sub" id="page-sub">Generate prediksi otomatis</div>
+    <div class="page-sub">Generate prediksi otomatis &amp; convert ke gambar</div>
 
     <!-- Controls -->
     <div class="controls">
@@ -331,97 +337,103 @@
         </select>
       </div>
       <button class="btn btn-warning" onclick="doGenerate()">⚡ Generate</button>
-      <button class="btn btn-ghost" onclick="resetCard()">↺ Reset</button>
+      <button class="btn btn-ghost"   onclick="resetCard()">↺ Reset</button>
     </div>
 
-    <!-- CARD 1:1 -->
+    <!-- ═══════════ PREDICTION CARD ═══════════ -->
     <div id="pred-card" style="display:none">
-      <div class="card-bg"></div>
-      <div class="corner corner-tl"></div>
-      <div class="corner corner-tr"></div>
-      <div class="corner corner-bl"></div>
-      <div class="corner corner-br"></div>
+      <div class="card-wrap">
+        <div class="card-inner">
 
-      <div class="card-inner">
-        <!-- Logo -->
-        <div class="c-logo" id="c-logo"></div>
+          <!-- Logo -->
+          <div class="c-logo" id="c-logo"></div>
 
-        <!-- Title -->
-        <div class="c-title">
-          <div class="c-prediksi" id="c-pasaran">PREDIKSI PASARAN</div>
-          <div class="c-date" id="c-date-sub">—</div>
-          <div class="c-tanggal" id="c-tanggal">—</div>
-        </div>
+          <!-- PREDIKSI big title -->
+          <div class="prediksi-big">PREDIKSI</div>
 
-        <!-- Main 3-col grid -->
-        <div class="c-main">
-          <!-- Left -->
-          <div class="c-left">
-            <div class="s-box">
-              <div class="s-label">KEPALA</div>
-              <div class="s-value" id="out-kepala">—</div>
+          <!-- Pasaran -->
+          <div class="c-pasaran-nm" id="c-pasaran-nm">PASARAN</div>
+
+          <!-- Date -->
+          <div class="c-date" id="c-date">—</div>
+
+          <div class="c-divider"></div>
+
+          <!-- BBFS | AI | CB | CM -->
+          <div class="stats-row">
+            <div class="stat-box">
+              <div class="stat-lbl">BBFS</div>
+              <div class="stat-val bbfs-val" id="out-bbfs">—</div>
             </div>
-            <div class="s-box">
-              <div class="s-label">ANGKA MAIN</div>
-              <div class="s-value big" id="out-main">—</div>
+            <div class="stat-box">
+              <div class="stat-lbl">AI</div>
+              <div class="stat-val" id="out-ai">—</div>
             </div>
-          </div>
-
-          <!-- Center Shio -->
-          <div class="c-shio">
-            <div class="shio-lbl">SHIO</div>
-            <img id="shio-img" class="shio-img" src="" alt="shio" crossorigin="anonymous">
-            <div class="shio-nm" id="shio-nm">—</div>
-          </div>
-
-          <!-- Right -->
-          <div class="c-right">
-            <div class="s-box">
-              <div class="s-label">BBFS</div>
-              <div class="s-value medium" id="out-bbfs">—</div>
+            <div class="stat-box">
+              <div class="stat-lbl">CB</div>
+              <div class="stat-val" id="out-cb">—</div>
             </div>
-            <div class="s-box">
-              <div class="s-label">EKOR</div>
-              <div class="s-value" id="out-ekor">—</div>
+            <div class="stat-box">
+              <div class="stat-lbl">CM</div>
+              <div class="stat-val" id="out-cm" style="font-size:14px;letter-spacing:0">—</div>
             </div>
           </div>
-        </div>
 
-        <!-- Bottom stats -->
-        <div class="c-bottom">
-          <div class="b-box">
-            <div class="b-lbl">2D BB</div>
-            <div class="b-val" id="out-2d">—</div>
+          <!-- 4D / 3D / 2D BB -->
+          <div class="bb-wrap">
+            <div class="bb-row">
+              <div class="bb-lbl">4D BB</div>
+              <div class="bb-sep">|</div>
+              <div class="bb-val" id="out-4d">—</div>
+            </div>
+            <div class="bb-row">
+              <div class="bb-lbl">3D BB</div>
+              <div class="bb-sep">|</div>
+              <div class="bb-val" id="out-3d">—</div>
+            </div>
+            <div class="bb-row">
+              <div class="bb-lbl">2D BB</div>
+              <div class="bb-sep">|</div>
+              <div class="bb-val" id="out-2d">—</div>
+            </div>
           </div>
-          <div class="b-box">
-            <div class="b-lbl">3D BB</div>
-            <div class="b-val" id="out-3d">—</div>
-          </div>
-          <div class="b-box">
-            <div class="b-lbl">CB</div>
-            <div class="b-val" id="out-cb">—</div>
-          </div>
-          <div class="b-box">
-            <div class="b-lbl">CM</div>
-            <div class="b-val" id="out-cm">—</div>
-          </div>
-        </div>
 
-        <!-- Footer -->
-        <div class="c-footer" id="c-footer">
-          <div class="c-footer-text">
-            MINIMAL DEPOSIT : <span>RP. 10.000</span> &nbsp;|&nbsp; MINIMAL BETTING : <span>100 PERAK</span>
+          <!-- SHIO -->
+          <div class="c-shio-row">
+            <img id="shio-img" class="shio-img-sm" src="" alt="shio" crossorigin="anonymous">
+            <div>
+              <div class="shio-lbl-sm">SHIO</div>
+              <div class="shio-nm-sm" id="shio-nm">—</div>
+            </div>
           </div>
+
+          <!-- TWIN + ANGKA PANAS -->
+          <div class="bottom-row">
+            <div class="bot-box">
+              <div class="bot-lbl">TWIN</div>
+              <div class="bot-val" id="out-twin">—</div>
+            </div>
+            <div class="bot-box">
+              <div class="bot-lbl">ANGKA PANAS</div>
+              <div class="bot-val" id="out-panas">—</div>
+            </div>
+          </div>
+
+          <!-- Footer -->
+          <div class="c-footer-banner">
+            <span>MINIMAL DEPOSIT : <b>RP. 10.000</b> &nbsp;|&nbsp; MINIMAL BETTING : <b>100 PERAK</b></span>
+          </div>
+
         </div>
       </div>
     </div><!-- /pred-card -->
 
     <!-- Image Actions -->
     <div class="img-actions" id="img-actions" style="display:none">
-      <button class="btn btn-primary" onclick="convertGambar()">📸 Convert Gambar</button>
-      <button class="btn btn-success" id="btn-download" style="display:none" onclick="downloadGambar()">⬇️ Download</button>
-      <button class="btn btn-ghost"   id="btn-copy"     style="display:none" onclick="copyGambar()">📋 Copy</button>
-      <button class="btn btn-ghost"   id="btn-newtab"   style="display:none" onclick="openNewTab()">↗️ Tab Baru</button>
+      <button class="btn btn-primary"  onclick="convertGambar()">📸 Convert Gambar</button>
+      <button class="btn btn-success"  id="btn-download" style="display:none" onclick="downloadGambar()">⬇️ Download</button>
+      <button class="btn btn-ghost"    id="btn-copy"     style="display:none" onclick="copyGambar()">📋 Copy</button>
+      <button class="btn btn-ghost"    id="btn-newtab"   style="display:none" onclick="openNewTab()">↗️ Tab Baru</button>
     </div>
 
   </div>
@@ -472,10 +484,6 @@
 
   let lastDataUrl = null;
 
-  function rndShio() {
-    return CONFIG.shio[Math.floor(Math.random() * CONFIG.shio.length)];
-  }
-
   function doGenerate() {
     const pasaran = selPas.value;
     if (!pasaran) { alert('Pilih pasaran dulu!'); return; }
@@ -483,37 +491,31 @@
 
     const bbfs = generateBBFS(type);
     const pred = generatePrediksi(bbfs);
-    const shio = rndShio();
+    const shio = CONFIG.shio[Math.floor(Math.random() * CONFIG.shio.length)];
 
-    // Kepala = digit pertama bbfs, Ekor = digit terakhir bbfs
-    const kepala = bbfs[0];
-    const ekor   = bbfs[bbfs.length - 1];
+    document.getElementById('c-pasaran-nm').textContent = pasaran;
+    document.getElementById('c-date').textContent = tanggal;
 
-    // Angka main = AI (4 digit)
-    const angkaMain = pred.ai;
+    document.getElementById('out-bbfs').textContent = bbfs;
+    document.getElementById('out-ai').textContent   = pred.ai;
+    document.getElementById('out-cb').textContent   = pred.cb;
+    document.getElementById('out-cm').textContent   = pred.cm;
 
-    document.getElementById('c-pasaran').textContent  = 'PREDIKSI ' + pasaran;
-    document.getElementById('c-date-sub').textContent = 'PREDIKSI ' + pasaran + ' 4D HARI INI';
-    document.getElementById('c-tanggal').textContent  = tanggal;
-
-    document.getElementById('out-kepala').textContent = kepala;
-    document.getElementById('out-main').textContent   = angkaMain;
-    document.getElementById('out-bbfs').textContent   = bbfs;
-    document.getElementById('out-ekor').textContent   = ekor;
-
-    document.getElementById('out-2d').textContent = pred.bb2.slice(0,3).join(' · ');
-    document.getElementById('out-3d').textContent = pred.bb3.slice(0,2).join(' · ');
-    document.getElementById('out-cb').textContent = pred.cb;
-    document.getElementById('out-cm').textContent = pred.cm;
+    document.getElementById('out-4d').textContent = pred.bb4.join(' - ');
+    document.getElementById('out-3d').textContent = pred.bb3.join(' - ');
+    document.getElementById('out-2d').textContent = pred.bb2.join(' - ');
 
     document.getElementById('shio-img').src = shio.img;
     document.getElementById('shio-nm').textContent = shio.name;
 
-    document.getElementById('pred-card').style.display = 'block';
+    document.getElementById('out-twin').textContent  = pred.twin.join(' & ');
+    document.getElementById('out-panas').textContent = pred.panas;
+
+    document.getElementById('pred-card').style.display   = 'block';
     document.getElementById('img-actions').style.display = 'flex';
     document.getElementById('btn-download').style.display = 'none';
-    document.getElementById('btn-copy').style.display     = 'none';
-    document.getElementById('btn-newtab').style.display   = 'none';
+    document.getElementById('btn-copy').style.display    = 'none';
+    document.getElementById('btn-newtab').style.display  = 'none';
     lastDataUrl = null;
 
     document.getElementById('pred-card').scrollIntoView({ behavior:'smooth', block:'center' });
@@ -527,14 +529,15 @@
   }
 
   function convertGambar() {
-    html2canvas(document.getElementById('pred-card'), {
-      backgroundColor: '#071510',
+    const card = document.getElementById('pred-card');
+    html2canvas(card, {
+      backgroundColor: '#040812',
       scale: 2,
       useCORS: true,
       allowTaint: true,
       logging: false,
-      width: 560,
-      height: 560
+      width: card.offsetWidth,
+      height: card.offsetHeight
     }).then(canvas => {
       lastDataUrl = canvas.toDataURL('image/png');
       document.getElementById('btn-download').style.display = 'inline-flex';
