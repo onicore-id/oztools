@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Generate Prediksi — OZTOOLS</title>
+<link rel="stylesheet" href="../css/style.css">
+<style>
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: flex-end;
+  margin-bottom: 24px;
+}
+.controls .form-group { margin-bottom: 0; flex: 1; min-width: 160px; }
+.controls .btn { align-self: flex-end; white-space: nowrap; }
+
+#pred-card {
+  width: 580px;
+  max-width: 100%;
+  margin: 0 auto 24px;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #0f1923;
+}
+
+.pred-header {
+  padding: 22px 28px 18px;
+  text-align: center;
+  position: relative;
+}
+.pred-header::after {
+  content: 'PREDIKSI';
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  opacity: 0.5;
+  color: #fff;
+}
+.pred-site {
+  font-size: 30px;
+  font-weight: 900;
+  letter-spacing: 3px;
+  color: #fff;
+  text-transform: uppercase;
+  margin-top: 14px;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.5);
+}
+.pred-body { padding: 0 24px 24px; }
+
+.pred-pasaran {
+  font-size: 24px;
+  font-weight: 900;
+  text-align: center;
+  color: #facc15;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  line-height: 1.2;
+  padding: 16px 0 4px;
+}
+.pred-tanggal {
+  font-size: 13px;
+  text-align: center;
+  color: #94a3b8;
+  margin-bottom: 18px;
+  font-weight: 500;
+}
+
+.pred-top-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-bottom: 16px;
+}
+.pred-cell {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 8px;
+  padding: 10px 6px;
+  text-align: center;
+}
+.pred-cell-lbl {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #64748b;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+}
+.pred-cell-val {
+  font-size: 17px;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: 1px;
+  word-break: break-all;
+}
+
+.pred-lines { margin-bottom: 14px; }
+.pred-line {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 7px 12px;
+  border-radius: 6px;
+  margin-bottom: 5px;
+  background: rgba(255,255,255,0.03);
+}
+.pred-line-lbl {
+  font-size: 11px;
+  font-weight: 800;
+  color: #64748b;
+  letter-spacing: 1px;
+  min-width: 52px;
+  text-transform: uppercase;
+}
+.pred-line-val {
+  font-size: 14px;
+  font-weight: 700;
+  color: #e2e8f0;
+  letter-spacing: 0.5px;
+  word-break: break-all;
+}
+
+.pred-shio {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 8px;
+  padding: 10px;
+  text-align: center;
+  margin-bottom: 12px;
+}
+.pred-shio-lbl { font-size: 10px; font-weight: 700; letter-spacing: 2px; color: #64748b; text-transform: uppercase; margin-bottom: 4px; }
+.pred-shio-val { font-size: 16px; font-weight: 800; color: #fff; }
+
+.pred-footer-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+.pred-box {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 8px;
+  padding: 10px;
+  text-align: center;
+}
+.pred-box-lbl { font-size: 10px; font-weight: 700; letter-spacing: 1px; color: #64748b; text-transform: uppercase; margin-bottom: 4px; }
+.pred-box-val { font-size: 20px; font-weight: 900; color: #facc15; }
+
+.pred-watermark {
+  text-align: center;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.25);
+  padding-top: 12px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+.img-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+</style>
+</head>
+<body>
+<div class="page-top">
+  <div class="container">
+    <div class="site-header">
+      <div class="logo" id="logo-title">OZ<span>TOOLS</span> PREDIKSI</div>
+      <div class="server-time">Server Time &nbsp;|&nbsp; <strong id="server-time">00:00:00</strong> &nbsp;|&nbsp; GMT +7</div>
+    </div>
+
+    <a href="#" onclick="history.back();return false" class="back-link">← Kembali</a>
+
+    <div class="page-title" id="page-title">AUTO GENERATE <span>BBFS 7</span></div>
+    <div class="page-sub" id="page-sub">Generate prediksi otomatis</div>
+
+    <!-- Controls -->
+    <div class="controls">
+      <div class="form-group">
+        <label>Tanggal</label>
+        <select id="sel-tanggal"></select>
+      </div>
+      <div class="form-group">
+        <label>Pasaran</label>
+        <select id="sel-pasaran">
+          <option value="">— Pilih Pasaran —</option>
+        </select>
+      </div>
+      <button class="btn btn-warning" onclick="doGenerate()">⚡ Generate</button>
+      <button class="btn btn-ghost" onclick="window.location.reload()">↺ Reset</button>
+    </div>
+
+    <!-- Prediction Card -->
+    <div id="pred-card" style="display:none">
+      <div class="pred-header" id="pred-header">
+        <div class="pred-site" id="pred-site-name">—</div>
+      </div>
+      <div class="pred-body">
+        <div class="pred-pasaran" id="pred-pasaran">PASARAN</div>
+        <div class="pred-tanggal" id="pred-tanggal">—</div>
+
+        <div class="pred-top-row">
+          <div class="pred-cell">
+            <div class="pred-cell-lbl">BBFS</div>
+            <div class="pred-cell-val" id="out-bbfs">—</div>
+          </div>
+          <div class="pred-cell">
+            <div class="pred-cell-lbl">AI</div>
+            <div class="pred-cell-val" id="out-ai">—</div>
+          </div>
+          <div class="pred-cell">
+            <div class="pred-cell-lbl">CB</div>
+            <div class="pred-cell-val" id="out-cb">—</div>
+          </div>
+          <div class="pred-cell">
+            <div class="pred-cell-lbl">CM</div>
+            <div class="pred-cell-val" id="out-cm">—</div>
+          </div>
+        </div>
+
+        <div class="pred-lines">
+          <div class="pred-line">
+            <span class="pred-line-lbl">4D BB</span>
+            <span class="pred-line-val" id="out-4d">—</span>
+          </div>
+          <div class="pred-line">
+            <span class="pred-line-lbl">3D BB</span>
+            <span class="pred-line-val" id="out-3d">—</span>
+          </div>
+          <div class="pred-line">
+            <span class="pred-line-lbl">2D BB</span>
+            <span class="pred-line-val" id="out-2d">—</span>
+          </div>
+        </div>
+
+        <div class="pred-shio">
+          <div class="pred-shio-lbl">SHIO</div>
+          <div class="pred-shio-val" id="out-shio">—</div>
+        </div>
+
+        <div class="pred-footer-row">
+          <div class="pred-box">
+            <div class="pred-box-lbl">TWIN</div>
+            <div class="pred-box-val" id="out-twin">—</div>
+          </div>
+          <div class="pred-box">
+            <div class="pred-box-lbl">ANGKA PANAS</div>
+            <div class="pred-box-val" id="out-panas">—</div>
+          </div>
+        </div>
+
+        <div class="pred-watermark" id="pred-watermark">OZTOOLS</div>
+      </div>
+    </div>
+
+    <!-- Image Actions -->
+    <div class="img-actions" id="img-actions" style="display:none">
+      <button class="btn btn-primary" onclick="convertGambar()">📸 Convert Gambar</button>
+      <button class="btn btn-success" id="btn-download" style="display:none" onclick="downloadGambar()">⬇️ Download</button>
+      <button class="btn btn-ghost"   id="btn-copy"     style="display:none" onclick="copyGambar()">📋 Copy Gambar</button>
+      <button class="btn btn-ghost"   id="btn-newtab"   style="display:none" onclick="openNewTab()">↗️ Buka Tab Baru</button>
+    </div>
+
+    <!-- Canvas result (hidden) -->
+    <canvas id="result-canvas" style="display:none"></canvas>
+
+  </div>
+  <div class="copyright">&copy; <span id="yr"></span> OZTOOLS &mdash; All Rights Reserved</div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="../config.js"></script>
+<script src="../js/auth.js"></script>
+<script src="../js/generate.js"></script>
+<script>
+  checkAuth();
+  serverTime();
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  const params = new URLSearchParams(window.location.search);
+  const type   = parseInt(params.get('type')) || 7;
+  const siteId = params.get('site') || 'oz1';
+  const site   = CONFIG.sites.find(s => s.id === siteId) || CONFIG.sites[0];
+
+  // Apply site color to accent
+  document.documentElement.style.setProperty('--accent', site.color);
+
+  // Header styling
+  document.getElementById('pred-header').style.background = site.gradient;
+  document.getElementById('pred-header').style.borderBottom = '2px solid ' + site.color + '66';
+  document.getElementById('pred-site-name').textContent = site.name;
+  document.getElementById('pred-watermark').textContent = site.name;
+  document.getElementById('page-title').innerHTML = 'AUTO PREDIKSI <span>' + site.name + ' — BBFS ' + type + '</span>';
+  document.getElementById('page-sub').textContent = 'Generate prediksi otomatis untuk ' + site.name;
+
+  // Populate tanggal (7 hari ke depan)
+  const selTgl = document.getElementById('sel-tanggal');
+  getDateOptions(7).forEach((opt, i) => {
+    const o = document.createElement('option');
+    o.value = opt.label;
+    o.textContent = opt.label;
+    if (i === 0) o.selected = true;
+    selTgl.appendChild(o);
+  });
+
+  // Populate pasaran
+  const selPas = document.getElementById('sel-pasaran');
+  CONFIG.pasaran.forEach(p => {
+    const o = document.createElement('option');
+    o.value = p; o.textContent = p;
+    selPas.appendChild(o);
+  });
+
+  let lastDataUrl = null;
+
+  function doGenerate() {
+    const pasaran = selPas.value;
+    if (!pasaran) { alert('Pilih pasaran dulu!'); return; }
+    const tanggal = selTgl.value;
+
+    const bbfs = generateBBFS(type);
+    const pred = generatePrediksi(bbfs);
+
+    document.getElementById('pred-pasaran').textContent = pasaran;
+    document.getElementById('pred-tanggal').textContent  = tanggal;
+    document.getElementById('out-bbfs').textContent = pred.bbfs;
+    document.getElementById('out-ai').textContent   = pred.ai;
+    document.getElementById('out-cb').textContent   = pred.cb;
+    document.getElementById('out-cm').textContent   = pred.cm;
+    document.getElementById('out-4d').textContent   = pred.bb4.join(' - ');
+    document.getElementById('out-3d').textContent   = pred.bb3.join(' - ');
+    document.getElementById('out-2d').textContent   = pred.bb2.join(' - ');
+    document.getElementById('out-shio').textContent = pred.shio.join(' & ');
+    document.getElementById('out-twin').textContent = pred.twin.join(' & ');
+    document.getElementById('out-panas').textContent = pred.panas;
+
+    document.getElementById('pred-card').style.display = 'block';
+    document.getElementById('img-actions').style.display = 'flex';
+    document.getElementById('btn-download').style.display = 'none';
+    document.getElementById('btn-copy').style.display = 'none';
+    document.getElementById('btn-newtab').style.display = 'none';
+    lastDataUrl = null;
+
+    document.getElementById('pred-card').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  function convertGambar() {
+    const card = document.getElementById('pred-card');
+    html2canvas(card, {
+      backgroundColor: '#0f1923',
+      scale: 2,
+      useCORS: true,
+      logging: false
+    }).then(canvas => {
+      lastDataUrl = canvas.toDataURL('image/png');
+      document.getElementById('btn-download').style.display = 'inline-flex';
+      document.getElementById('btn-copy').style.display = 'inline-flex';
+      document.getElementById('btn-newtab').style.display = 'inline-flex';
+    });
+  }
+
+  function downloadGambar() {
+    if (!lastDataUrl) return;
+    const a = document.createElement('a');
+    const pasaran = document.getElementById('sel-pasaran').value.replace(/\s+/g,'_');
+    a.download = 'prediksi_' + site.id + '_' + pasaran + '.png';
+    a.href = lastDataUrl;
+    a.click();
+  }
+
+  function copyGambar() {
+    if (!lastDataUrl) return;
+    fetch(lastDataUrl)
+      .then(r => r.blob())
+      .then(blob => {
+        const item = new ClipboardItem({ 'image/png': blob });
+        navigator.clipboard.write([item]).then(() => alert('Gambar berhasil dicopy!'));
+      });
+  }
+
+  function openNewTab() {
+    if (!lastDataUrl) return;
+    const win = window.open();
+    win.document.write('<img src="' + lastDataUrl + '" style="max-width:100%">');
+    win.document.close();
+  }
+</script>
+</body>
+</html>

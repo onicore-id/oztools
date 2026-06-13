@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Result Detail — OZTOOLS</title>
+<link rel="stylesheet" href="../css/style.css">
+<style>
+.result-wrap { max-width: 520px; margin: 0 auto; }
+.result-card {
+  border-radius: 16px;
+  overflow: hidden;
+  margin-top: 20px;
+  display: none;
+}
+.result-header {
+  padding: 20px 24px 16px;
+  text-align: center;
+}
+.result-body {
+  background: #0f1923;
+  padding: 24px;
+  text-align: center;
+}
+.result-pasaran-name {
+  font-size: 22px;
+  font-weight: 900;
+  color: #facc15;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.result-date-label {
+  font-size: 13px;
+  color: #94a3b8;
+  margin-bottom: 20px;
+}
+.result-angka {
+  font-size: 64px;
+  font-weight: 900;
+  letter-spacing: 8px;
+  color: #fff;
+  margin: 8px 0 16px;
+  text-shadow: 0 4px 16px rgba(0,0,0,0.5);
+}
+.result-parts {
+  display: flex;
+  justify-content: center;
+  gap: 0;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+.result-part {
+  flex: 1;
+  padding: 12px 8px;
+  text-align: center;
+  border-right: 1px solid rgba(255,255,255,0.1);
+}
+.result-part:last-child { border-right: none; }
+.result-part .digit { font-size: 26px; font-weight: 900; color: #fff; }
+.result-part .dlbl  { font-size: 10px; color: #64748b; font-weight: 700; letter-spacing: 1px; margin-top: 4px; text-transform: uppercase; }
+.result-watermark {
+  font-size: 11px; font-weight: 800; letter-spacing: 4px;
+  color: rgba(255,255,255,0.2); text-transform: uppercase;
+  padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.06);
+}
+.img-actions { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 16px; }
+</style>
+</head>
+<body>
+<div class="page-top">
+  <div class="container">
+    <div class="site-header">
+      <div class="logo" id="logo">OZ<span>TOOLS</span> RESULT</div>
+      <div class="server-time">Server Time &nbsp;|&nbsp; <strong id="server-time">00:00:00</strong> &nbsp;|&nbsp; GMT +7</div>
+    </div>
+
+    <a href="#" onclick="history.back();return false" class="back-link">← Kembali</a>
+    <div class="page-title" id="page-title">RESULT <span>SITUS</span></div>
+    <div class="page-sub">Input angka keluaran togel</div>
+
+    <div class="result-wrap">
+      <div class="card">
+        <div id="err-msg" class="alert alert-error" style="display:none"></div>
+        <div class="form-group">
+          <label>Nama Pasaran</label>
+          <input type="text" id="inp-pasaran" placeholder="Contoh: SINGAPORE" autocomplete="off">
+        </div>
+        <div class="form-group">
+          <label>Angka Keluaran (4 digit)</label>
+          <input type="text" id="inp-angka" placeholder="Contoh: 4821" maxlength="4" autocomplete="off">
+        </div>
+        <div class="btn-group" style="margin-top:4px">
+          <button class="btn btn-primary" onclick="showResult()">👁 Tampilkan</button>
+          <button class="btn btn-ghost" onclick="resetForm()">↺ Reset</button>
+        </div>
+      </div>
+
+      <div id="result-card" class="result-card">
+        <div class="result-header" id="result-header">
+          <div style="font-size:11px;font-weight:700;letter-spacing:4px;opacity:0.6;color:#fff;margin-bottom:6px">RESULT KELUARAN</div>
+          <div style="font-size:26px;font-weight:900;letter-spacing:2px;color:#fff" id="result-site-name">—</div>
+        </div>
+        <div class="result-body">
+          <div class="result-pasaran-name" id="out-pasaran">—</div>
+          <div class="result-date-label" id="out-date">—</div>
+          <div class="result-angka" id="out-angka">—</div>
+          <div class="result-parts">
+            <div class="result-part">
+              <div class="digit" id="out-as">—</div>
+              <div class="dlbl">AS</div>
+            </div>
+            <div class="result-part">
+              <div class="digit" id="out-kop">—</div>
+              <div class="dlbl">KOP</div>
+            </div>
+            <div class="result-part">
+              <div class="digit" id="out-kepala">—</div>
+              <div class="dlbl">KEPALA</div>
+            </div>
+            <div class="result-part">
+              <div class="digit" id="out-ekor">—</div>
+              <div class="dlbl">EKOR</div>
+            </div>
+          </div>
+          <div class="result-watermark" id="result-watermark">OZTOOLS</div>
+        </div>
+      </div>
+
+      <div class="img-actions" id="img-actions" style="display:none">
+        <button class="btn btn-primary" onclick="convertGambar()">📸 Convert Gambar</button>
+        <button class="btn btn-success" id="btn-dl"   style="display:none" onclick="downloadGambar()">⬇️ Download</button>
+        <button class="btn btn-ghost"   id="btn-copy" style="display:none" onclick="copyGambar()">📋 Copy</button>
+        <button class="btn btn-ghost"   id="btn-tab"  style="display:none" onclick="openTab()">↗️ Tab Baru</button>
+      </div>
+    </div>
+  </div>
+  <div class="copyright">&copy; <span id="yr"></span> OZTOOLS &mdash; All Rights Reserved</div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="../config.js"></script>
+<script src="../js/auth.js"></script>
+<script>
+  checkAuth(); serverTime();
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  const params = new URLSearchParams(window.location.search);
+  const siteId = params.get('site') || 'oz1';
+  const site   = CONFIG.sites.find(s => s.id === siteId) || CONFIG.sites[0];
+
+  document.documentElement.style.setProperty('--accent', site.color);
+  document.getElementById('page-title').innerHTML = 'RESULT <span>' + site.name + '</span>';
+  document.getElementById('result-site-name').textContent = site.name;
+  document.getElementById('result-header').style.background = site.gradient;
+  document.getElementById('result-header').style.borderBottom = '2px solid ' + site.color + '66';
+  document.getElementById('result-watermark').textContent = site.name;
+
+  const hari  = ['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
+  const bulan = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
+  function getToday() {
+    const d = new Date();
+    return hari[d.getDay()] + ' | ' + d.getDate() + ' ' + bulan[d.getMonth()] + ' ' + d.getFullYear();
+  }
+
+  let lastDataUrl = null;
+
+  function showResult() {
+    const pas   = document.getElementById('inp-pasaran').value.trim().toUpperCase();
+    const angka = document.getElementById('inp-angka').value.trim();
+    const err   = document.getElementById('err-msg');
+    err.style.display = 'none';
+
+    if (!pas) { err.textContent = 'Nama pasaran wajib diisi!'; err.style.display = 'block'; return; }
+    if (!/^\d{4}$/.test(angka)) { err.textContent = 'Angka keluaran harus 4 digit!'; err.style.display = 'block'; return; }
+
+    document.getElementById('out-pasaran').textContent = pas;
+    document.getElementById('out-date').textContent    = getToday();
+    document.getElementById('out-angka').textContent   = angka;
+    document.getElementById('out-as').textContent      = angka[0];
+    document.getElementById('out-kop').textContent     = angka[1];
+    document.getElementById('out-kepala').textContent  = angka[2];
+    document.getElementById('out-ekor').textContent    = angka[3];
+
+    document.getElementById('result-card').style.display = 'block';
+    document.getElementById('img-actions').style.display = 'flex';
+    document.getElementById('btn-dl').style.display   = 'none';
+    document.getElementById('btn-copy').style.display = 'none';
+    document.getElementById('btn-tab').style.display  = 'none';
+    lastDataUrl = null;
+    document.getElementById('result-card').scrollIntoView({ behavior:'smooth', block:'center' });
+  }
+
+  function resetForm() {
+    document.getElementById('inp-pasaran').value = '';
+    document.getElementById('inp-angka').value   = '';
+    document.getElementById('result-card').style.display = 'none';
+    document.getElementById('img-actions').style.display = 'none';
+    document.getElementById('err-msg').style.display = 'none';
+  }
+
+  function convertGambar() {
+    html2canvas(document.getElementById('result-card'), { backgroundColor:'#0f1923', scale:2, useCORS:true, logging:false })
+      .then(c => {
+        lastDataUrl = c.toDataURL('image/png');
+        document.getElementById('btn-dl').style.display   = 'inline-flex';
+        document.getElementById('btn-copy').style.display = 'inline-flex';
+        document.getElementById('btn-tab').style.display  = 'inline-flex';
+      });
+  }
+
+  function downloadGambar() {
+    if (!lastDataUrl) return;
+    const a = document.createElement('a');
+    a.download = 'result_' + site.id + '_' + document.getElementById('inp-pasaran').value.replace(/\s+/g,'_') + '.png';
+    a.href = lastDataUrl; a.click();
+  }
+
+  function copyGambar() {
+    if (!lastDataUrl) return;
+    fetch(lastDataUrl).then(r=>r.blob()).then(blob=>{
+      navigator.clipboard.write([new ClipboardItem({'image/png':blob})]).then(()=>alert('Gambar berhasil dicopy!'));
+    });
+  }
+
+  function openTab() {
+    if (!lastDataUrl) return;
+    const w = window.open(); w.document.write('<img src="'+lastDataUrl+'" style="max-width:100%">'); w.document.close();
+  }
+</script>
+</body>
+</html>

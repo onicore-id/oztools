@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Auto Generate — OZTOOLS</title>
+<link rel="stylesheet" href="../css/style.css">
+<style>
+.site-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border-radius: 14px;
+  padding: 32px 16px;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-decoration: none;
+  border: 2px solid transparent;
+  transition: all 0.2s;
+  min-height: 110px;
+  text-transform: uppercase;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+}
+.site-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 32px rgba(0,0,0,0.6);
+  filter: brightness(1.15);
+}
+.site-card .site-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  opacity: 0.7;
+  text-transform: uppercase;
+}
+.sites-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+@media(min-width:500px){
+  .sites-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media(min-width:700px){
+  .sites-grid { grid-template-columns: repeat(5, 1fr); }
+}
+</style>
+</head>
+<body>
+<div class="page-top">
+  <div class="container">
+    <div class="site-header">
+      <div class="logo">OZ<span>TOOLS</span> PREDIKSI</div>
+      <div class="server-time">Server Time &nbsp;|&nbsp; <strong id="server-time">00:00:00</strong> &nbsp;|&nbsp; GMT +7</div>
+    </div>
+
+    <a href="#" onclick="history.back();return false" class="back-link">← Kembali</a>
+
+    <div class="page-title" id="page-title">TOOLS <span>AUTO GENERATE BBFS</span></div>
+    <div class="page-sub">Pilih situs untuk generate prediksi</div>
+
+    <div class="sites-grid" id="sites-grid"></div>
+  </div>
+  <div class="copyright">&copy; <span id="yr"></span> OZTOOLS &mdash; All Rights Reserved</div>
+</div>
+
+<script src="../config.js"></script>
+<script src="../js/auth.js"></script>
+<script>
+  checkAuth();
+  serverTime();
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  const params = new URLSearchParams(window.location.search);
+  const type = params.get('type') || '7';
+  const mode = params.get('mode') || 'auto';
+
+  document.getElementById('page-title').innerHTML =
+    'TOOLS <span>AUTO GENERATE BBFS ' + type + '</span>';
+
+  const grid = document.getElementById('sites-grid');
+  CONFIG.sites.forEach(site => {
+    const a = document.createElement('a');
+    a.href = 'generate.html?type=' + type + '&site=' + site.id + '&mode=' + mode;
+    a.className = 'site-card';
+    a.style.background = site.gradient;
+    a.style.borderColor = site.color + '44';
+    a.innerHTML = '<div class="site-label">SITUS</div><div>' + site.name + '</div>';
+    grid.appendChild(a);
+  });
+</script>
+</body>
+</html>

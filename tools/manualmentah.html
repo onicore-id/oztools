@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Manual Mentah — OZTOOLS</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div class="page-top">
+  <div class="container">
+    <div class="site-header">
+      <div class="logo">OZ<span>TOOLS</span> PREDIKSI</div>
+      <div class="server-time">Server Time &nbsp;|&nbsp; <strong id="server-time">00:00:00</strong> &nbsp;|&nbsp; GMT +7</div>
+    </div>
+
+    <a href="#" onclick="history.back();return false" class="back-link">← Kembali</a>
+    <div class="page-title" id="page-title">MANUAL <span>MENTAH BBFS 7</span></div>
+    <div class="page-sub">Input BBFS manual lalu generate prediksi mentah</div>
+
+    <div class="card" style="max-width:480px;margin:0 auto 24px">
+      <div id="err-msg" class="alert alert-error" style="display:none"></div>
+      <div class="form-group">
+        <label id="bbfs-label">BBFS 7 Digit</label>
+        <input type="text" id="bbfs-input" placeholder="Contoh: 1234567" maxlength="7" autocomplete="off">
+        <div class="manual-input-note" id="bbfs-note">Tidak boleh input angka kembar (contoh: 1123456 ❌)</div>
+      </div>
+      <div class="btn-group" style="margin-top:0">
+        <button class="btn btn-primary" onclick="doGenerate()">👁 Tampilkan</button>
+        <button class="btn btn-warning" onclick="doRandom()">⚡ Generate Acak</button>
+      </div>
+    </div>
+
+    <div id="output-box" class="mentah-box" style="display:none;margin-bottom:20px"></div>
+
+    <div id="action-btns" style="display:none">
+      <div class="btn-group">
+        <button class="btn btn-ghost" onclick="doGenerate()">↺ Generate Ulang</button>
+        <a href="#" onclick="history.back();return false" class="btn btn-ghost">← Kembali</a>
+      </div>
+    </div>
+  </div>
+  <div class="copyright">&copy; <span id="yr"></span> OZTOOLS &mdash; All Rights Reserved</div>
+</div>
+
+<script src="../config.js"></script>
+<script src="../js/auth.js"></script>
+<script src="../js/generate.js"></script>
+<script>
+  checkAuth(); serverTime();
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  const params = new URLSearchParams(window.location.search);
+  const type = parseInt(params.get('type')) || 7;
+
+  document.getElementById('page-title').innerHTML = 'MANUAL <span>MENTAH BBFS ' + type + '</span>';
+  document.getElementById('bbfs-label').textContent = 'BBFS ' + type + ' Digit';
+  document.getElementById('bbfs-input').maxLength = type;
+  document.getElementById('bbfs-input').placeholder = 'Contoh: ' + '1234567'.slice(0, type);
+  document.getElementById('bbfs-note').textContent = 'Masukkan ' + type + ' digit unik (tanpa angka kembar)';
+
+  const hari  = ['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
+  const bulan = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
+
+  function getTodayLabel() {
+    const d = new Date();
+    return hari[d.getDay()] + ', ' + d.getDate() + ' ' + bulan[d.getMonth()] + ' ' + d.getFullYear();
+  }
+
+  function doRandom() {
+    const bbfs = generateBBFS(type);
+    document.getElementById('bbfs-input').value = bbfs;
+    showResult(bbfs);
+  }
+
+  function doGenerate() {
+    const val = document.getElementById('bbfs-input').value.trim();
+    const err = document.getElementById('err-msg');
+    err.style.display = 'none';
+
+    if (val.length !== type || !/^\d+$/.test(val)) {
+      err.textContent = 'BBFS harus ' + type + ' digit angka!';
+      err.style.display = 'block';
+      return;
+    }
+    if (new Set(val.split('')).size !== type) {
+      err.textContent = 'Tidak boleh ada angka kembar!';
+      err.style.display = 'block';
+      return;
+    }
+    showResult(val);
+  }
+
+  function showResult(bbfs) {
+    const pred = generatePrediksi(bbfs);
+    const sep  = '================================================';
+    const text = [
+      sep,
+      getTodayLabel(),
+      sep,
+      'AI    : ' + pred.ai,
+      'BBFS  : ' + pred.bbfs,
+      'CB    : ' + pred.cb,
+      'CM    : ' + pred.cm,
+      'Shio  : ' + pred.shio.join(' & '),
+      '2D BB : ' + pred.bb2.join(' - '),
+      '3D BB : ' + pred.bb3.join(' - '),
+      '4D BB : ' + pred.bb4.join(' - '),
+      'TWINS : ' + pred.twin.join(' & '),
+      'Angka Panas : ' + pred.panas,
+    ].join('\n');
+    const box = document.getElementById('output-box');
+    box.textContent = text;
+    box.style.display = 'block';
+    document.getElementById('action-btns').style.display = 'block';
+    box.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Hastag — OZTOOLS</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="page-top">
+  <div class="container">
+    <div class="site-header">
+      <div class="logo">OZ<span>TOOLS</span> HASTAG</div>
+      <div class="server-time">Server Time &nbsp;|&nbsp; <strong id="server-time">00:00:00</strong> &nbsp;|&nbsp; GMT +7</div>
+    </div>
+
+    <a href="dashboard.html" class="back-link">← Kembali</a>
+    <div class="page-title">TOOLS <span>HASTAG</span></div>
+    <div class="page-sub">Pilih pasaran untuk generate hashtag</div>
+
+    <div class="menu-grid col3">
+      <a href="tools/hastag-detail.html?pasaran=CAMBODIA"  class="menu-btn"><span class="icon">🇰🇭</span>CAMBODIA</a>
+      <a href="tools/hastag-detail.html?pasaran=SYDNEY"    class="menu-btn"><span class="icon">🇦🇺</span>SYDNEY</a>
+      <a href="tools/hastag-detail.html?pasaran=SINGAPORE" class="menu-btn"><span class="icon">🇸🇬</span>SINGAPORE</a>
+      <a href="tools/hastag-detail.html?pasaran=TAIWAN"    class="menu-btn"><span class="icon">🇹🇼</span>TAIWAN</a>
+      <a href="tools/hastag-detail.html?pasaran=HONGKONG"  class="menu-btn"><span class="icon">🇭🇰</span>HONGKONG</a>
+      <a href="tools/hastag-detail.html?pasaran=MACAU"     class="menu-btn"><span class="icon">🎰</span>MACAU</a>
+      <a href="tools/hastag-detail.html?pasaran=SLOT"      class="menu-btn"><span class="icon">🎰</span>SLOT</a>
+    </div>
+  </div>
+  <div class="copyright">&copy; <span id="yr"></span> OZTOOLS &mdash; All Rights Reserved</div>
+</div>
+<script src="config.js"></script>
+<script src="js/auth.js"></script>
+<script>checkAuth();serverTime();document.getElementById('yr').textContent=new Date().getFullYear();</script>
+</body>
+</html>

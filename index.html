@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Login — OZTOOLS</title>
+<link rel="stylesheet" href="css/style.css">
+<style>
+.login-wrap { width: 100%; max-width: 400px; }
+.login-logo { text-align: center; margin-bottom: 36px; }
+.login-logo .brand { font-size: 36px; font-weight: 900; letter-spacing: -1px; }
+.login-logo .brand span { color: #3B82F6; }
+.login-logo .sub { font-size: 13px; color: #666; letter-spacing: 3px; text-transform: uppercase; margin-top: 4px; }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="login-wrap">
+    <div class="login-logo">
+      <div class="brand">OZ<span>TOOLS</span></div>
+      <div class="sub">Management System</div>
+    </div>
+
+    <div class="card">
+      <div id="err-msg" class="alert alert-error" style="display:none"></div>
+      <form id="login-form">
+        <div class="form-group">
+          <label>Username</label>
+          <input type="text" id="uname" placeholder="Masukkan username" autocomplete="off" required>
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" id="upass" placeholder="Masukkan password" required>
+        </div>
+        <button type="submit" class="btn btn-primary btn-full" style="margin-top:8px">
+          Login &rarr;
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <div class="copyright">
+    &copy; <span id="yr"></span> OZTOOLS &mdash; All Rights Reserved
+  </div>
+</div>
+
+<script src="config.js"></script>
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  if (sessionStorage.getItem('oz_auth')) {
+    window.location.href = 'dashboard.html';
+  }
+
+  document.getElementById('login-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const u = document.getElementById('uname').value.trim();
+    const p = document.getElementById('upass').value;
+    const match = CONFIG.credentials.find(c => c.username === u && c.password === p);
+    if (match) {
+      sessionStorage.setItem('oz_auth', u);
+      window.location.href = 'dashboard.html';
+    } else {
+      const err = document.getElementById('err-msg');
+      err.textContent = 'Username atau password salah.';
+      err.style.display = 'block';
+    }
+  });
+</script>
+</body>
+</html>

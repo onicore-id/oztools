@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Dashboard — OZTOOLS</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="page">
+  <div class="container">
+    <div class="site-header">
+      <div class="logo">
+        <span class="dot-blink"></span>OZ<span>TOOLS</span> PREDIKSI
+      </div>
+      <div class="server-time">
+        Server Time &nbsp;|&nbsp; <strong id="server-time">00:00:00</strong> &nbsp;|&nbsp; GMT +7
+      </div>
+    </div>
+
+    <div class="menu-grid col4">
+      <a href="prediksi.html" class="menu-btn">
+        <span class="icon">🎯</span>
+        PREDIKSI
+      </a>
+      <a href="result.html" class="menu-btn">
+        <span class="icon">📊</span>
+        RESULT
+      </a>
+      <a href="hastag.html" class="menu-btn">
+        <span class="icon">#</span>
+        HASTAG
+      </a>
+      <a href="rtp.html" class="menu-btn">
+        <span class="icon">🎰</span>
+        RTP SLOT
+      </a>
+    </div>
+
+    <div style="text-align:center;margin-top:32px">
+      <button onclick="logout()" class="btn btn-ghost" style="font-size:13px">
+        ← Logout
+      </button>
+    </div>
+  </div>
+
+  <div class="copyright">
+    &copy; <span id="yr"></span> OZTOOLS &mdash; All Rights Reserved
+  </div>
+</div>
+
+<script src="config.js"></script>
+<script src="js/auth.js"></script>
+<script>
+  checkAuth();
+  serverTime();
+  document.getElementById('yr').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Hastag Detail — OZTOOLS</title>
+<link rel="stylesheet" href="../css/style.css">
+<style>
+.hastag-section { margin-bottom: 24px; }
+.hastag-section h3 {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--text2);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.hastag-area {
+  width: 100%;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: #e2e8f0;
+  font-family: inherit;
+  font-size: 13px;
+  line-height: 1.8;
+  padding: 14px 16px;
+  min-height: 110px;
+  resize: vertical;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.hastag-area:focus { border-color: var(--accent); }
+.copy-note {
+  font-size: 12px;
+  color: #10b981;
+  margin-top: 6px;
+  display: none;
+}
+</style>
+</head>
+<body>
+<div class="page-top">
+  <div class="container">
+    <div class="site-header">
+      <div class="logo">OZ<span>TOOLS</span> HASTAG</div>
+      <div class="server-time">Server Time &nbsp;|&nbsp; <strong id="server-time">00:00:00</strong> &nbsp;|&nbsp; GMT +7</div>
+    </div>
+
+    <a href="#" onclick="history.back();return false" class="back-link">← Kembali</a>
+    <div class="page-title" id="page-title">HASTAG <span>—</span></div>
+    <div class="page-sub">Klik pada textarea untuk select all, lalu copy</div>
+
+    <div id="content-area"></div>
+
+    <div class="btn-group">
+      <button class="btn btn-warning" onclick="regenAll()">⚡ Generate Ulang</button>
+      <a href="#" onclick="history.back();return false" class="btn btn-ghost">← Kembali</a>
+    </div>
+  </div>
+  <div class="copyright">&copy; <span id="yr"></span> OZTOOLS &mdash; All Rights Reserved</div>
+</div>
+
+<script src="../config.js"></script>
+<script src="../js/auth.js"></script>
+<script>
+  checkAuth(); serverTime();
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  const params  = new URLSearchParams(window.location.search);
+  const pasaran = params.get('pasaran') || 'CAMBODIA';
+  const data    = CONFIG.hastag[pasaran] || { prediksi: '(tidak tersedia)', keluaran: '(tidak tersedia)' };
+
+  document.getElementById('page-title').innerHTML = 'HASTAG <span>' + pasaran + '</span>';
+
+  function shuffle(str) {
+    const words = str.trim().split(/\s+/);
+    for (let i = words.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [words[i], words[j]] = [words[j], words[i]];
+    }
+    return words.join(' ');
+  }
+
+  function render() {
+    const area = document.getElementById('content-area');
+    area.innerHTML = '';
+
+    const sections = [
+      { label: 'Prediksi Togel', key: 'prediksi' },
+      { label: 'Keluaran Togel & Live Streaming', key: 'keluaran' }
+    ];
+
+    sections.forEach((sec, idx) => {
+      const div = document.createElement('div');
+      div.className = 'hastag-section';
+
+      const h3 = document.createElement('h3');
+      h3.textContent = sec.label;
+
+      const ta = document.createElement('textarea');
+      ta.className = 'hastag-area';
+      ta.readOnly = true;
+      ta.value = shuffle(data[sec.key]);
+
+      const note = document.createElement('div');
+      note.className = 'copy-note';
+      note.id = 'note-' + idx;
+      note.textContent = '✓ Teks berhasil dicopy!';
+
+      ta.addEventListener('click', function() {
+        this.select();
+        try {
+          document.execCommand('copy');
+          const n = document.getElementById('note-' + idx);
+          n.style.display = 'block';
+          setTimeout(() => n.style.display = 'none', 2000);
+        } catch(e) {}
+      });
+
+      div.appendChild(h3);
+      div.appendChild(ta);
+      div.appendChild(note);
+      area.appendChild(div);
+    });
+  }
+
+  function regenAll() { render(); }
+
+  render();
+</script>
+</body>
+</html>
