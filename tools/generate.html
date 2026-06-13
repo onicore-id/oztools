@@ -549,9 +549,9 @@
     document.getElementById('out-twin').textContent  = pred.twin.join(' & ');
     document.getElementById('out-panas').textContent = pred.panas;
 
-    // Shio (main shio = s1)
-    document.getElementById('shio-emoji').textContent = s1.emoji;
-    document.getElementById('shio-name').textContent  = s1.name;
+    // Shio image
+    document.getElementById('shio-emoji').innerHTML = '<img src="' + s1.img + '" style="width:64px;height:64px;object-fit:contain" crossorigin="anonymous">';
+    document.getElementById('shio-name').textContent = s1.name + ' & ' + s2.name;
 
     // CB dan CM2
     const cbDigits = pred.cb.replace(' & ', ' ').split(' ');

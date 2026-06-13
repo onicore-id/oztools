@@ -30,18 +30,18 @@ const CONFIG = {
   ],
 
   shio: [
-    { name: "Tikus",   emoji: "🐭" },
-    { name: "Kerbau",  emoji: "🐂" },
-    { name: "Harimau", emoji: "🐯" },
-    { name: "Kelinci", emoji: "🐰" },
-    { name: "Naga",    emoji: "🐉" },
-    { name: "Ular",    emoji: "🐍" },
-    { name: "Kuda",    emoji: "🐴" },
-    { name: "Kambing", emoji: "🐏" },
-    { name: "Monyet",  emoji: "🐒" },
-    { name: "Ayam",    emoji: "🐓" },
-    { name: "Anjing",  emoji: "🐕" },
-    { name: "Babi",    emoji: "🐷" }
+    { name: "Tikus",   img: "https://i.ibb.co/KpdbkkL2/Tikus.png" },
+    { name: "Kerbau",  img: "https://i.ibb.co/0j9pgx2b/Kerbau.png" },
+    { name: "Harimau", img: "https://i.ibb.co/qFRVqMy7/Harimau.png" },
+    { name: "Kelinci", img: "https://i.ibb.co/Hw7hrNQ/Kelinci.png" },
+    { name: "Naga",    img: "https://i.ibb.co/tM2DKkQL/Naga.png" },
+    { name: "Ular",    img: "https://i.ibb.co/LzcTsQNP/Ular.png" },
+    { name: "Kuda",    img: "https://i.ibb.co/Y43MPgqp/Kuda.png" },
+    { name: "Kambing", img: "https://i.ibb.co/qMBwCpNX/Kambing.png" },
+    { name: "Monyet",  img: "https://i.ibb.co/3yMh1mhG/Monyet.png" },
+    { name: "Ayam",    img: "https://i.ibb.co/C3PzH8vw/Ayam.png" },
+    { name: "Anjing",  img: "https://i.ibb.co/4ZGYBBrd/Anjing.png" },
+    { name: "Babi",    img: "https://i.ibb.co/Hp4GV9Qx/Babi.png" }
   ],
 
   pasaranFlag: {
