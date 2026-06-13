@@ -6,6 +6,7 @@
 <meta name="robots" content="noindex,nofollow">
 <title>Generate Prediksi — OZTOOLS</title>
 <link rel="stylesheet" href="../css/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=Oswald:wght@600;700&display=swap" rel="stylesheet">
 <style>
 .controls {
   display: flex;
@@ -15,156 +16,285 @@
   margin-bottom: 24px;
 }
 .controls .form-group { margin-bottom: 0; flex: 1; min-width: 160px; }
-.controls .btn { align-self: flex-end; white-space: nowrap; }
 
+/* ── PREDICTION CARD ── */
 #pred-card {
-  width: 580px;
+  width: 560px;
   max-width: 100%;
-  margin: 0 auto 24px;
+  margin: 0 auto 20px;
   border-radius: 16px;
   overflow: hidden;
-  background: #0f1923;
+  font-family: 'Inter', sans-serif;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.6);
 }
 
-.pred-header {
-  padding: 22px 28px 18px;
+/* Header */
+.card-header {
+  padding: 16px 20px 14px;
   text-align: center;
   position: relative;
 }
-.pred-header::after {
-  content: 'PREDIKSI';
-  position: absolute;
-  top: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 4px;
-  opacity: 0.5;
-  color: #fff;
+.card-logo {
+  height: 52px;
+  max-width: 180px;
+  object-fit: contain;
+  margin-bottom: 4px;
 }
-.pred-site {
-  font-size: 30px;
-  font-weight: 900;
+.card-logo-text {
+  font-family: 'Oswald', sans-serif;
+  font-size: 28px;
+  font-weight: 700;
   letter-spacing: 3px;
   color: #fff;
-  text-transform: uppercase;
-  margin-top: 14px;
-  text-shadow: 0 2px 12px rgba(0,0,0,0.5);
+  text-shadow: 0 2px 8px rgba(0,0,0,0.5);
 }
-.pred-body { padding: 0 24px 24px; }
-
-.pred-pasaran {
-  font-size: 24px;
-  font-weight: 900;
-  text-align: center;
+.card-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 6px;
+}
+.card-flag { font-size: 28px; line-height: 1; }
+.card-pasaran-name {
+  font-family: 'Oswald', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
   color: #facc15;
   letter-spacing: 1px;
   text-transform: uppercase;
-  line-height: 1.2;
-  padding: 16px 0 4px;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.5);
 }
-.pred-tanggal {
+.card-date {
   font-size: 13px;
-  text-align: center;
-  color: #94a3b8;
-  margin-bottom: 18px;
-  font-weight: 500;
+  color: rgba(255,255,255,0.75);
+  font-weight: 600;
+  margin-top: 4px;
+  letter-spacing: 0.5px;
 }
 
-.pred-top-row {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 8px;
-  margin-bottom: 16px;
+/* BBFS balls */
+.bbfs-section {
+  background: rgba(0,0,0,0.35);
+  padding: 12px 16px;
+  text-align: center;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
 }
-.pred-cell {
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 8px;
-  padding: 10px 6px;
+.bbfs-label {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 3px;
+  color: rgba(255,255,255,0.5);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.bbfs-balls {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.ball {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 900;
+  color: #fff;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+  box-shadow: inset 0 -3px 6px rgba(0,0,0,0.3), inset 0 3px 6px rgba(255,255,255,0.2), 0 2px 8px rgba(0,0,0,0.4);
+  position: relative;
+  font-family: 'Oswald', sans-serif;
+}
+.ball::before {
+  content: '';
+  position: absolute;
+  top: 6px;
+  left: 10px;
+  width: 12px;
+  height: 8px;
+  background: rgba(255,255,255,0.3);
+  border-radius: 50%;
+  transform: rotate(-30deg);
+}
+
+/* Body */
+.card-body {
+  background: #111820;
+  padding: 14px 16px 16px;
+}
+
+/* Main grid */
+.main-grid {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+/* Shio box */
+.shio-box {
+  background: linear-gradient(160deg, #1a0a00, #3d1a00);
+  border: 1px solid #c2400055;
+  border-radius: 10px;
+  padding: 12px 8px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+.shio-emoji { font-size: 48px; line-height: 1; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5)); }
+.shio-name {
+  font-family: 'Oswald', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: #facc15;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+.shio-lbl { font-size: 9px; color: rgba(255,255,255,0.4); letter-spacing: 2px; text-transform: uppercase; margin-bottom: -2px; }
+
+/* Right side - 2D dan 4D */
+.right-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.section-box {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.section-title {
+  background: rgba(255,255,255,0.08);
+  padding: 5px 10px;
+  font-family: 'Oswald', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #facc15;
+  text-transform: uppercase;
+}
+.section-content {
+  padding: 8px 10px;
+}
+
+/* 2D grid */
+.grid-2d {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
   text-align: center;
 }
-.pred-cell-lbl {
-  font-size: 10px;
+.num-2d {
+  font-family: 'Oswald', sans-serif;
+  font-size: 20px;
   font-weight: 700;
-  letter-spacing: 1px;
-  color: #64748b;
-  text-transform: uppercase;
-  margin-bottom: 5px;
-}
-.pred-cell-val {
-  font-size: 17px;
-  font-weight: 800;
   color: #fff;
   letter-spacing: 1px;
-  word-break: break-all;
 }
 
-.pred-lines { margin-bottom: 14px; }
-.pred-line {
-  display: flex;
-  align-items: baseline;
-  gap: 10px;
-  padding: 7px 12px;
-  border-radius: 6px;
-  margin-bottom: 5px;
-  background: rgba(255,255,255,0.03);
-}
-.pred-line-lbl {
-  font-size: 11px;
-  font-weight: 800;
-  color: #64748b;
-  letter-spacing: 1px;
-  min-width: 52px;
-  text-transform: uppercase;
-}
-.pred-line-val {
-  font-size: 14px;
-  font-weight: 700;
-  color: #e2e8f0;
-  letter-spacing: 0.5px;
-  word-break: break-all;
-}
-
-.pred-shio {
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 8px;
-  padding: 10px;
+/* 4D grid */
+.grid-4d {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 4px;
   text-align: center;
-  margin-bottom: 12px;
 }
-.pred-shio-lbl { font-size: 10px; font-weight: 700; letter-spacing: 2px; color: #64748b; text-transform: uppercase; margin-bottom: 4px; }
-.pred-shio-val { font-size: 16px; font-weight: 800; color: #fff; }
+.num-4d {
+  font-family: 'Oswald', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 1px;
+}
 
-.pred-footer-row {
+/* Bottom row - colok + 3D */
+.bottom-grid {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.colok-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 8px;
-  margin-bottom: 16px;
+  gap: 6px;
 }
-.pred-box {
+.colok-box {
   background: rgba(255,255,255,0.04);
   border: 1px solid rgba(255,255,255,0.08);
   border-radius: 8px;
-  padding: 10px;
+  padding: 8px 6px;
   text-align: center;
 }
-.pred-box-lbl { font-size: 10px; font-weight: 700; letter-spacing: 1px; color: #64748b; text-transform: uppercase; margin-bottom: 4px; }
-.pred-box-val { font-size: 20px; font-weight: 900; color: #facc15; }
+.colok-lbl { font-size: 9px; font-weight: 700; letter-spacing: 1px; color: #64748b; text-transform: uppercase; margin-bottom: 4px; }
+.colok-val {
+  font-family: 'Oswald', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: #facc15;
+}
 
-.pred-watermark {
+/* 3D grid */
+.grid-3d {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+  text-align: center;
+}
+.num-3d {
+  font-family: 'Oswald', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+}
+
+/* AI + CM + TWIN + PANAS row */
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+  margin-bottom: 10px;
+}
+.stat-box {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 8px;
+  padding: 7px 6px;
+  text-align: center;
+}
+.stat-lbl { font-size: 9px; font-weight: 700; letter-spacing: 1px; color: #64748b; text-transform: uppercase; margin-bottom: 3px; }
+.stat-val {
+  font-family: 'Oswald', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+}
+
+/* Footer banner */
+.card-footer-banner {
+  margin: 0 0 0;
+  padding: 9px 12px;
   text-align: center;
   font-size: 11px;
   font-weight: 800;
-  letter-spacing: 4px;
+  letter-spacing: 1px;
+  color: #000;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.25);
-  padding-top: 12px;
-  border-top: 1px solid rgba(255,255,255,0.06);
+  line-height: 1.5;
 }
 
+/* Image actions */
 .img-actions {
   display: flex;
   gap: 10px;
@@ -183,7 +313,6 @@
     </div>
 
     <a href="#" onclick="history.back();return false" class="back-link">← Kembali</a>
-
     <div class="page-title" id="page-title">AUTO GENERATE <span>BBFS 7</span></div>
     <div class="page-sub" id="page-sub">Generate prediksi otomatis</div>
 
@@ -200,82 +329,119 @@
         </select>
       </div>
       <button class="btn btn-warning" onclick="doGenerate()">⚡ Generate</button>
-      <button class="btn btn-ghost" onclick="window.location.reload()">↺ Reset</button>
+      <button class="btn btn-ghost" onclick="resetCard()">↺ Reset</button>
     </div>
 
-    <!-- Prediction Card -->
+    <!-- PREDICTION CARD -->
     <div id="pred-card" style="display:none">
-      <div class="pred-header" id="pred-header">
-        <div class="pred-site" id="pred-site-name">—</div>
+
+      <!-- Header -->
+      <div class="card-header" id="card-header">
+        <div id="logo-area"></div>
+        <div class="card-title-row">
+          <span class="card-flag" id="card-flag">🏴</span>
+          <span class="card-pasaran-name" id="card-pasaran">PASARAN</span>
+          <span class="card-flag" id="card-flag2">🏴</span>
+        </div>
+        <div class="card-date" id="card-date">—</div>
       </div>
-      <div class="pred-body">
-        <div class="pred-pasaran" id="pred-pasaran">PASARAN</div>
-        <div class="pred-tanggal" id="pred-tanggal">—</div>
 
-        <div class="pred-top-row">
-          <div class="pred-cell">
-            <div class="pred-cell-lbl">BBFS</div>
-            <div class="pred-cell-val" id="out-bbfs">—</div>
-          </div>
-          <div class="pred-cell">
-            <div class="pred-cell-lbl">AI</div>
-            <div class="pred-cell-val" id="out-ai">—</div>
-          </div>
-          <div class="pred-cell">
-            <div class="pred-cell-lbl">CB</div>
-            <div class="pred-cell-val" id="out-cb">—</div>
-          </div>
-          <div class="pred-cell">
-            <div class="pred-cell-lbl">CM</div>
-            <div class="pred-cell-val" id="out-cm">—</div>
-          </div>
-        </div>
-
-        <div class="pred-lines">
-          <div class="pred-line">
-            <span class="pred-line-lbl">4D BB</span>
-            <span class="pred-line-val" id="out-4d">—</span>
-          </div>
-          <div class="pred-line">
-            <span class="pred-line-lbl">3D BB</span>
-            <span class="pred-line-val" id="out-3d">—</span>
-          </div>
-          <div class="pred-line">
-            <span class="pred-line-lbl">2D BB</span>
-            <span class="pred-line-val" id="out-2d">—</span>
-          </div>
-        </div>
-
-        <div class="pred-shio">
-          <div class="pred-shio-lbl">SHIO</div>
-          <div class="pred-shio-val" id="out-shio">—</div>
-        </div>
-
-        <div class="pred-footer-row">
-          <div class="pred-box">
-            <div class="pred-box-lbl">TWIN</div>
-            <div class="pred-box-val" id="out-twin">—</div>
-          </div>
-          <div class="pred-box">
-            <div class="pred-box-lbl">ANGKA PANAS</div>
-            <div class="pred-box-val" id="out-panas">—</div>
-          </div>
-        </div>
-
-        <div class="pred-watermark" id="pred-watermark">OZTOOLS</div>
+      <!-- BBFS Balls -->
+      <div class="bbfs-section">
+        <div class="bbfs-label">BBFS</div>
+        <div class="bbfs-balls" id="bbfs-balls"></div>
       </div>
-    </div>
+
+      <!-- Body -->
+      <div class="card-body">
+
+        <!-- AI + CM + TWIN + PANAS -->
+        <div class="stats-row">
+          <div class="stat-box">
+            <div class="stat-lbl">AI</div>
+            <div class="stat-val" id="out-ai">—</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-lbl">CM</div>
+            <div class="stat-val" id="out-cm">—</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-lbl">TWIN</div>
+            <div class="stat-val" id="out-twin">—</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-lbl">PANAS</div>
+            <div class="stat-val" id="out-panas">—</div>
+          </div>
+        </div>
+
+        <!-- Shio + 2D + 4D -->
+        <div class="main-grid">
+          <!-- Shio -->
+          <div class="shio-box" id="shio-box">
+            <div class="shio-lbl">SHIO</div>
+            <div class="shio-emoji" id="shio-emoji">🐷</div>
+            <div class="shio-name" id="shio-name">—</div>
+          </div>
+
+          <!-- 2D & 4D -->
+          <div class="right-grid">
+            <div class="section-box">
+              <div class="section-title">ANGKA 2D</div>
+              <div class="section-content">
+                <div class="grid-2d" id="grid-2d"></div>
+              </div>
+            </div>
+            <div class="section-box">
+              <div class="section-title">ANGKA 4D</div>
+              <div class="section-content">
+                <div class="grid-4d" id="grid-4d"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Colok + 3D -->
+        <div class="bottom-grid">
+          <!-- Colok -->
+          <div>
+            <div class="colok-grid">
+              <div class="colok-box">
+                <div class="colok-lbl">COLOK<br>BEBAS</div>
+                <div class="colok-val" id="out-cb">—</div>
+              </div>
+              <div class="colok-box">
+                <div class="colok-lbl">COLOK<br>MACAU</div>
+                <div class="colok-val" id="out-cm2">—</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3D -->
+          <div class="section-box">
+            <div class="section-title">ANGKA 3D</div>
+            <div class="section-content">
+              <div class="grid-3d" id="grid-3d"></div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /card-body -->
+
+      <!-- Footer banner -->
+      <div class="card-footer-banner" id="card-footer-banner">
+        MINIMAL BETTING HANYA 100 PERAK &nbsp;|&nbsp; PASANG ANGKA HOKIMU <span style="color:#c00">SEKARANG JUGA!</span>
+      </div>
+
+    </div><!-- /pred-card -->
 
     <!-- Image Actions -->
     <div class="img-actions" id="img-actions" style="display:none">
       <button class="btn btn-primary" onclick="convertGambar()">📸 Convert Gambar</button>
       <button class="btn btn-success" id="btn-download" style="display:none" onclick="downloadGambar()">⬇️ Download</button>
-      <button class="btn btn-ghost"   id="btn-copy"     style="display:none" onclick="copyGambar()">📋 Copy Gambar</button>
-      <button class="btn btn-ghost"   id="btn-newtab"   style="display:none" onclick="openNewTab()">↗️ Buka Tab Baru</button>
+      <button class="btn btn-ghost"   id="btn-copy"     style="display:none" onclick="copyGambar()">📋 Copy</button>
+      <button class="btn btn-ghost"   id="btn-newtab"   style="display:none" onclick="openNewTab()">↗️ Tab Baru</button>
     </div>
-
-    <!-- Canvas result (hidden) -->
-    <canvas id="result-canvas" style="display:none"></canvas>
 
   </div>
   <div class="copyright">&copy; <span id="yr"></span> OZTOOLS &mdash; All Rights Reserved</div>
@@ -295,28 +461,36 @@
   const siteId = params.get('site') || 'oz1';
   const site   = CONFIG.sites.find(s => s.id === siteId) || CONFIG.sites[0];
 
-  // Apply site color to accent
   document.documentElement.style.setProperty('--accent', site.color);
-
-  // Header styling
-  document.getElementById('pred-header').style.background = site.gradient;
-  document.getElementById('pred-header').style.borderBottom = '2px solid ' + site.color + '66';
-  document.getElementById('pred-site-name').textContent = site.name;
-  document.getElementById('pred-watermark').textContent = site.name;
   document.getElementById('page-title').innerHTML = 'AUTO PREDIKSI <span>' + site.name + ' — BBFS ' + type + '</span>';
-  document.getElementById('page-sub').textContent = 'Generate prediksi otomatis untuk ' + site.name;
+  document.getElementById('page-sub').textContent = 'Generate prediksi untuk ' + site.name;
 
-  // Populate tanggal (7 hari ke depan)
+  // Card header style
+  const hdr = document.getElementById('card-header');
+  hdr.style.background = site.gradient;
+  hdr.style.borderBottom = '3px solid ' + site.color;
+
+  // Logo
+  const logoArea = document.getElementById('logo-area');
+  if (site.logo) {
+    logoArea.innerHTML = '<img src="' + site.logo + '" class="card-logo" crossorigin="anonymous">';
+  } else {
+    logoArea.innerHTML = '<div class="card-logo-text">' + site.name + '</div>';
+  }
+
+  // Footer banner color
+  document.getElementById('card-footer-banner').style.background = site.color;
+
+  // Date options
   const selTgl = document.getElementById('sel-tanggal');
   getDateOptions(7).forEach((opt, i) => {
     const o = document.createElement('option');
-    o.value = opt.label;
-    o.textContent = opt.label;
+    o.value = opt.label; o.textContent = opt.label;
     if (i === 0) o.selected = true;
     selTgl.appendChild(o);
   });
 
-  // Populate pasaran
+  // Pasaran options
   const selPas = document.getElementById('sel-pasaran');
   CONFIG.pasaran.forEach(p => {
     const o = document.createElement('option');
@@ -324,78 +498,146 @@
     selPas.appendChild(o);
   });
 
+  // Ball colors
+  const ballColors = ['#e53e3e','#3182ce','#dd6b20','#805ad5','#f6ad55','#38a169','#744210','#1a1a1a','#c05621','#718096'];
+
   let lastDataUrl = null;
+
+  function renderBalls(bbfs) {
+    const container = document.getElementById('bbfs-balls');
+    container.innerHTML = '';
+    bbfs.split('').forEach((d, i) => {
+      const ball = document.createElement('div');
+      ball.className = 'ball';
+      ball.style.background = 'radial-gradient(circle at 35% 35%, ' + lighten(ballColors[parseInt(d)]) + ', ' + ballColors[parseInt(d)] + ')';
+      ball.textContent = d;
+      container.appendChild(ball);
+    });
+  }
+
+  function lighten(hex) {
+    const r = parseInt(hex.slice(1,3),16), g = parseInt(hex.slice(3,5),16), b = parseInt(hex.slice(5,7),16);
+    return 'rgb('+Math.min(255,r+60)+','+Math.min(255,g+60)+','+Math.min(255,b+60)+')';
+  }
 
   function doGenerate() {
     const pasaran = selPas.value;
     if (!pasaran) { alert('Pilih pasaran dulu!'); return; }
     const tanggal = selTgl.value;
+    const flag = CONFIG.pasaranFlag[pasaran] || '🌐';
 
     const bbfs = generateBBFS(type);
     const pred = generatePrediksi(bbfs);
 
-    document.getElementById('pred-pasaran').textContent = pasaran;
-    document.getElementById('pred-tanggal').textContent  = tanggal;
-    document.getElementById('out-bbfs').textContent = pred.bbfs;
-    document.getElementById('out-ai').textContent   = pred.ai;
-    document.getElementById('out-cb').textContent   = pred.cb;
-    document.getElementById('out-cm').textContent   = pred.cm;
-    document.getElementById('out-4d').textContent   = pred.bb4.join(' - ');
-    document.getElementById('out-3d').textContent   = pred.bb3.join(' - ');
-    document.getElementById('out-2d').textContent   = pred.bb2.join(' - ');
-    document.getElementById('out-shio').textContent = pred.shio.join(' & ');
-    document.getElementById('out-twin').textContent = pred.twin.join(' & ');
+    // Pick 2 shio
+    const s1 = CONFIG.shio[Math.floor(Math.random() * CONFIG.shio.length)];
+    let s2 = CONFIG.shio[Math.floor(Math.random() * CONFIG.shio.length)];
+    while (s2.name === s1.name) s2 = CONFIG.shio[Math.floor(Math.random() * CONFIG.shio.length)];
+
+    // Header
+    document.getElementById('card-flag').textContent  = flag;
+    document.getElementById('card-flag2').textContent = flag;
+    document.getElementById('card-pasaran').textContent = 'PREDIKSI ' + pasaran;
+    document.getElementById('card-date').textContent    = tanggal;
+
+    // BBFS balls
+    renderBalls(bbfs);
+
+    // Stats
+    document.getElementById('out-ai').textContent    = pred.ai;
+    document.getElementById('out-cm').textContent    = pred.cm;
+    document.getElementById('out-twin').textContent  = pred.twin.join(' & ');
     document.getElementById('out-panas').textContent = pred.panas;
+
+    // Shio (main shio = s1)
+    document.getElementById('shio-emoji').textContent = s1.emoji;
+    document.getElementById('shio-name').textContent  = s1.name;
+
+    // CB dan CM2
+    const cbDigits = pred.cb.replace(' & ', ' ').split(' ');
+    document.getElementById('out-cb').textContent  = cbDigits[0] + '  ' + cbDigits[1];
+    const cmDigits = pred.cm.split('.');
+    document.getElementById('out-cm2').textContent = (cmDigits[0]||'--') + '  ' + (cmDigits[1]||'--');
+
+    // 2D grid
+    const g2 = document.getElementById('grid-2d');
+    g2.innerHTML = '';
+    pred.bb2.forEach(n => {
+      const d = document.createElement('div');
+      d.className = 'num-2d'; d.textContent = n;
+      g2.appendChild(d);
+    });
+
+    // 4D grid
+    const g4 = document.getElementById('grid-4d');
+    g4.innerHTML = '';
+    pred.bb4.forEach(n => {
+      const d = document.createElement('div');
+      d.className = 'num-4d'; d.textContent = n;
+      g4.appendChild(d);
+    });
+
+    // 3D grid
+    const g3 = document.getElementById('grid-3d');
+    g3.innerHTML = '';
+    pred.bb3.slice(0, 6).forEach(n => {
+      const d = document.createElement('div');
+      d.className = 'num-3d'; d.textContent = n;
+      g3.appendChild(d);
+    });
 
     document.getElementById('pred-card').style.display = 'block';
     document.getElementById('img-actions').style.display = 'flex';
     document.getElementById('btn-download').style.display = 'none';
-    document.getElementById('btn-copy').style.display = 'none';
-    document.getElementById('btn-newtab').style.display = 'none';
+    document.getElementById('btn-copy').style.display     = 'none';
+    document.getElementById('btn-newtab').style.display   = 'none';
     lastDataUrl = null;
 
     document.getElementById('pred-card').scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
 
+  function resetCard() {
+    document.getElementById('pred-card').style.display    = 'none';
+    document.getElementById('img-actions').style.display  = 'none';
+    document.getElementById('sel-pasaran').value          = '';
+    lastDataUrl = null;
+  }
+
   function convertGambar() {
-    const card = document.getElementById('pred-card');
-    html2canvas(card, {
-      backgroundColor: '#0f1923',
+    html2canvas(document.getElementById('pred-card'), {
+      backgroundColor: null,
       scale: 2,
       useCORS: true,
+      allowTaint: true,
       logging: false
     }).then(canvas => {
       lastDataUrl = canvas.toDataURL('image/png');
       document.getElementById('btn-download').style.display = 'inline-flex';
-      document.getElementById('btn-copy').style.display = 'inline-flex';
-      document.getElementById('btn-newtab').style.display = 'inline-flex';
+      document.getElementById('btn-copy').style.display     = 'inline-flex';
+      document.getElementById('btn-newtab').style.display   = 'inline-flex';
     });
   }
 
   function downloadGambar() {
     if (!lastDataUrl) return;
     const a = document.createElement('a');
-    const pasaran = document.getElementById('sel-pasaran').value.replace(/\s+/g,'_');
-    a.download = 'prediksi_' + site.id + '_' + pasaran + '.png';
-    a.href = lastDataUrl;
-    a.click();
+    const pas = document.getElementById('sel-pasaran').value.replace(/\s+/g,'_');
+    a.download = 'prediksi_' + site.id + '_' + pas + '.png';
+    a.href = lastDataUrl; a.click();
   }
 
   function copyGambar() {
     if (!lastDataUrl) return;
-    fetch(lastDataUrl)
-      .then(r => r.blob())
-      .then(blob => {
-        const item = new ClipboardItem({ 'image/png': blob });
-        navigator.clipboard.write([item]).then(() => alert('Gambar berhasil dicopy!'));
-      });
+    fetch(lastDataUrl).then(r=>r.blob()).then(blob=>{
+      navigator.clipboard.write([new ClipboardItem({'image/png':blob})]).then(()=>alert('Gambar berhasil dicopy!'));
+    });
   }
 
   function openNewTab() {
     if (!lastDataUrl) return;
-    const win = window.open();
-    win.document.write('<img src="' + lastDataUrl + '" style="max-width:100%">');
-    win.document.close();
+    const w = window.open();
+    w.document.write('<img src="'+lastDataUrl+'" style="max-width:100%;display:block;margin:0 auto">');
+    w.document.close();
   }
 </script>
 </body>

@@ -49,7 +49,7 @@ function generatePrediksi(bbfsStr) {
   }
 
   // Shio: 2 dari daftar
-  const shios = pick(CONFIG.shio, 2);
+  const shios = pick(CONFIG.shio, 2).map(s => s.name);
 
   // Twin: 2 angka kembar dari bbfs
   const twins = pick(d, 2).map(x => String(x)+String(x));
