@@ -6,7 +6,7 @@
 <meta name="robots" content="noindex,nofollow">
 <title>Generate Prediksi — OZTOOLS</title>
 <link rel="stylesheet" href="../css/style.css">
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Inter:wght@600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Oswald:wght@600;700&family=Inter:wght@600;700;800;900&display=swap" rel="stylesheet">
 <style>
 /* ── CONTROLS ── */
 .controls {
@@ -18,287 +18,371 @@
 }
 .controls .form-group { margin-bottom:0; flex:1; min-width:160px; }
 
-/* ── PREDICTION CARD ── */
+/* ══════════════════════════════════════
+   PREDICTION CARD — 3D GOLD/TEAL STYLE
+══════════════════════════════════════ */
 #pred-card {
-  width: 580px;
+  width: 560px;
+  height: 560px;
   max-width: 98vw;
+  aspect-ratio: 1 / 1;
   margin: 0 auto 24px;
-  font-family: 'Inter', sans-serif;
-  border-radius: 18px;
-  overflow: hidden;
+  font-family: 'Oswald', 'Inter', sans-serif;
   position: relative;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+  overflow: hidden;
+  border-radius: 0;
+  /* Outer 3D frame */
+  box-shadow:
+    0 0 0 4px #c8960c,
+    0 0 0 8px #7a5800,
+    0 0 0 12px #f0c030,
+    0 6px 40px rgba(0,0,0,0.8),
+    0 12px 60px rgba(0,0,0,0.5);
 }
 
-.card-wrap {
-  background-image: url('https://i.ibb.co/TxWCGbpT/oztools-bg.webp');
-  background-size: cover;
-  background-position: center;
-  position: relative;
+/* ── BG ── */
+.card-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 50% 0%, #1a5068 0%, #0a2535 45%, #061520 100%);
+  z-index: 0;
 }
-.card-wrap::before {
-  content:'';
-  position:absolute;
-  inset:0;
-  background: rgba(4,8,18,0.72);
-}
-.card-inner {
-  position: relative;
+
+/* Gold ornament top/bottom edges */
+.card-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg,
+      rgba(200,150,12,0.25) 0%,
+      transparent 8%,
+      transparent 92%,
+      rgba(200,150,12,0.25) 100%
+    );
   z-index: 1;
-  padding: 22px 22px 18px;
+}
+
+/* Inner border */
+.card-border {
+  position: absolute;
+  inset: 10px;
+  border: 2px solid rgba(200,150,12,0.5);
+  z-index: 2;
+  pointer-events: none;
+}
+.card-border::before {
+  content: '';
+  position: absolute;
+  inset: 4px;
+  border: 1px solid rgba(200,150,12,0.25);
+}
+
+/* ── ALL CONTENT ── */
+.card-content {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 14px 18px 12px;
+  box-sizing: border-box;
 }
 
 /* ── LOGO ROW ── */
-.c-logo {
+.cc-logo {
   text-align: center;
-  margin-bottom: 10px;
+  margin-bottom: 4px;
+  line-height: 1;
 }
-.c-logo img {
-  height: 52px;
-  max-width: 180px;
+.cc-logo img {
+  height: 38px;
+  max-width: 160px;
   object-fit: contain;
-  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.7));
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.7));
 }
-.c-logo-text {
+.cc-logo-text {
   font-family: 'Cinzel', serif;
-  font-size: 26px;
+  font-size: 20px;
   font-weight: 900;
-  background: linear-gradient(180deg, #ffffff, #aaaaaa, #dddddd);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  filter: drop-shadow(0 2px 6px rgba(255,255,255,0.2));
+  color: #f0c030;
+  text-shadow:
+    1px 1px 0 #7a5800,
+    2px 2px 0 #5a4000,
+    0 0 12px rgba(240,192,48,0.4);
   letter-spacing: 4px;
 }
 
-/* ── PREDIKSI TITLE ── */
-.prediksi-big {
+/* ── PASARAN TITLE ── */
+.cc-pasaran {
   font-family: 'Cinzel', serif;
-  font-size: 52px;
+  font-size: 32px;
   font-weight: 900;
+  text-align: center;
   line-height: 1;
-  background: linear-gradient(180deg,
-    #ffffff 0%,
-    #e8e8e8 20%,
-    #b0b0b0 40%,
-    #d8d8d8 60%,
-    #909090 80%,
-    #cccccc 100%
-  );
+  /* 3D gold text */
+  background: linear-gradient(180deg, #ffe87a 0%, #f0c030 35%, #c8960c 70%, #f0c030 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  filter: drop-shadow(0 3px 10px rgba(255,255,255,0.12));
-  letter-spacing: 8px;
-  text-transform: uppercase;
-  text-align: center;
-  margin-bottom: 4px;
-}
-
-/* ── PASARAN NAME ── */
-.c-pasaran-nm {
-  font-family: 'Cinzel', serif;
-  font-size: 26px;
-  font-weight: 900;
-  color: #ffd700;
-  text-transform: uppercase;
+  filter: drop-shadow(2px 3px 0px rgba(80,40,0,0.8));
   letter-spacing: 3px;
-  text-align: center;
-  text-shadow: 0 0 16px rgba(255,215,0,0.6);
-  margin-bottom: 4px;
+  text-transform: uppercase;
+  margin-bottom: 3px;
 }
 
 /* ── DATE ── */
-.c-date {
-  text-align: center;
-  font-size: 13px;
-  font-weight: 700;
-  color: rgba(255,255,255,0.65);
-  letter-spacing: 2px;
-  margin-bottom: 14px;
-}
-
-/* ── DIVIDER ── */
-.c-divider {
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255,215,0,0.6), rgba(255,255,255,0.4), rgba(255,215,0,0.6), transparent);
-  margin: 0 0 14px;
-}
-
-/* ── STATS ROW: BBFS | AI | CB | CM ── */
-.stats-row {
-  display: grid;
-  grid-template-columns: repeat(4,1fr);
-  gap: 8px;
-  margin-bottom: 8px;
-}
-.stat-box {
-  background: rgba(255,255,255,0.07);
-  border: 1px solid rgba(255,255,255,0.13);
-  border-radius: 10px;
-  padding: 9px 6px;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-}
-.stat-box::before {
-  content:'';
-  position:absolute;
-  top:0; left:8%; right:8%;
-  height:1px;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent);
-}
-.stat-lbl {
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 2px;
-  color: rgba(255,255,255,0.5);
-  text-transform: uppercase;
-  margin-bottom: 5px;
-}
-.stat-val {
-  font-size: 18px;
-  font-weight: 900;
-  color: #fff;
-  letter-spacing: 1px;
-  word-break: break-all;
-}
-.bbfs-val {
-  font-size: 22px;
-  letter-spacing: 3px;
-  color: #ffd700;
-  text-shadow: 0 0 8px rgba(255,215,0,0.4);
-}
-
-/* ── BB ROWS ── */
-.bb-wrap {
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 10px;
-  overflow: hidden;
-  margin-bottom: 8px;
-}
-.bb-row {
-  display: flex;
-  align-items: center;
-  padding: 9px 14px;
-  border-bottom: 1px solid rgba(255,255,255,0.06);
-}
-.bb-row:last-child { border-bottom: none; }
-.bb-lbl {
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: 1px;
-  color: rgba(255,255,255,0.5);
-  text-transform: uppercase;
-  min-width: 56px;
-}
-.bb-sep {
-  color: rgba(255,255,255,0.2);
-  margin: 0 10px;
-  font-size: 16px;
-}
-.bb-val {
-  font-size: 15px;
-  font-weight: 700;
-  color: #f1f5f9;
-  letter-spacing: 1px;
-  flex: 1;
-}
-
-/* ── SHIO ── */
-.c-shio-row {
+.cc-date-pill {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 14px;
-  background: rgba(255,215,0,0.06);
-  border: 1px solid rgba(255,215,0,0.25);
-  border-radius: 10px;
-  padding: 10px 16px;
-  margin-bottom: 8px;
+  margin: 0 auto 8px;
+  width: fit-content;
+  background: linear-gradient(180deg, #1e6080, #0e3a50);
+  border: 1px solid #c8960c;
+  border-radius: 20px;
+  padding: 3px 18px;
+  box-shadow: 0 2px 0 #7a5800, 0 4px 8px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.1);
 }
-.shio-img-sm {
-  width: 48px;
-  height: 48px;
-  object-fit: contain;
-  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.5));
-}
-.shio-lbl-sm {
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 2px;
-  color: rgba(255,255,255,0.5);
-  text-transform: uppercase;
-  margin-bottom: 2px;
-}
-.shio-nm-sm {
-  font-family: 'Cinzel', serif;
-  font-size: 20px;
+.cc-date-pill span {
+  font-size: 12px;
   font-weight: 700;
-  color: #ffd700;
-  text-shadow: 0 0 10px rgba(255,215,0,0.5);
-  letter-spacing: 3px;
+  color: #f0c030;
+  letter-spacing: 2px;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.6);
   text-transform: uppercase;
 }
 
-/* ── TWIN + ANGKA PANAS ── */
-.bottom-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 8px;
-  margin-bottom: 10px;
+/* ── GOLD DIVIDER ── */
+.gold-div {
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #c8960c, #ffe87a, #c8960c, transparent);
+  margin: 0 0 7px;
+  box-shadow: 0 1px 4px rgba(200,150,12,0.4);
 }
-.bot-box {
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 10px;
-  padding: 11px 8px;
+
+/* ── BBFS HEADER SECTION ── */
+.bbfs-header {
+  background: linear-gradient(180deg, #1e6080 0%, #0e3a50 60%, #082a3c 100%);
+  border: 1px solid #c8960c;
+  border-radius: 6px;
+  box-shadow:
+    0 3px 0 #7a5800,
+    0 6px 12px rgba(0,0,0,0.5),
+    inset 0 1px 0 rgba(255,255,255,0.1);
+  padding: 6px 10px 8px;
+  margin-bottom: 6px;
   text-align: center;
-  position: relative;
-  overflow: hidden;
 }
-.bot-box::before {
-  content:'';
-  position:absolute;
-  top:0; left:10%; right:10%;
-  height:1px;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-}
-.bot-lbl {
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 2px;
-  color: rgba(255,255,255,0.5);
+.bbfs-header-lbl {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  color: #f0c030;
   text-transform: uppercase;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.5);
   margin-bottom: 5px;
 }
-.bot-val {
-  font-size: 24px;
-  font-weight: 900;
-  color: #ffd700;
-  text-shadow: 0 0 10px rgba(255,215,0,0.5);
-  letter-spacing: 3px;
+.bbfs-balls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+.bbfs-ball {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #2a7a9a, #0e3a50 60%, #062030);
+  border: 2px solid #c8960c;
+  box-shadow:
+    0 2px 0 #7a5800,
+    0 4px 8px rgba(0,0,0,0.6),
+    inset 0 1px 0 rgba(255,255,255,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 700;
+  color: #ffe87a;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.7);
+}
+
+/* ── STATS ROW: AI | CB | CM ── */
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  margin-bottom: 6px;
+}
+.stat-3d {
+  background: linear-gradient(180deg, #1e6080, #0e3a50, #082a3c);
+  border: 1px solid #c8960c;
+  border-radius: 5px;
+  box-shadow:
+    0 3px 0 #7a5800,
+    0 5px 10px rgba(0,0,0,0.4),
+    inset 0 1px 0 rgba(255,255,255,0.1);
+  padding: 5px 4px;
+  text-align: center;
+}
+.stat-3d-lbl {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: rgba(240,192,48,0.7);
+  text-transform: uppercase;
+  margin-bottom: 3px;
+}
+.stat-3d-val {
+  font-size: 17px;
+  font-weight: 700;
+  background: linear-gradient(180deg, #ffe87a, #f0c030, #c8960c);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(1px 2px 0 rgba(80,40,0,0.8));
+  letter-spacing: 1px;
+}
+
+/* ── BB TABLE ── */
+.bb-table-wrap {
+  background: linear-gradient(180deg, #1a5a70, #0c3245, #07202e);
+  border: 1px solid #c8960c;
+  border-radius: 6px;
+  box-shadow:
+    0 3px 0 #7a5800,
+    0 6px 14px rgba(0,0,0,0.5),
+    inset 0 1px 0 rgba(255,255,255,0.08);
+  overflow: hidden;
+  margin-bottom: 6px;
+}
+.bb-header-row {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  background: linear-gradient(180deg, #c8960c, #9a6e00);
+  padding: 4px 10px;
+}
+.bb-header-row span {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #fff;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+  text-transform: uppercase;
+}
+.bb-row {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  padding: 5px 10px;
+  border-bottom: 1px solid rgba(200,150,12,0.15);
+  align-items: center;
+}
+.bb-row:last-child { border-bottom: none; }
+.bb-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 22px;
+  background: radial-gradient(circle at 40% 30%, #2a7a9a, #0e3a50);
+  border: 1px solid #c8960c;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #ffe87a;
+  box-shadow: 0 2px 0 #7a5800, inset 0 1px 0 rgba(255,255,255,0.15);
+  text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+}
+.bb-val {
+  font-size: 13px;
+  font-weight: 600;
+  background: linear-gradient(180deg, #ffe87a, #f0c030);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(1px 1px 0 rgba(80,40,0,0.7));
+  letter-spacing: 0.5px;
+}
+
+/* ── BOTTOM ROW: SHIO + TWIN + PANAS ── */
+.bottom-3col {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 6px;
+  margin-bottom: 6px;
+}
+.bot-3d {
+  background: linear-gradient(180deg, #1e6080, #0e3a50, #082a3c);
+  border: 1px solid #c8960c;
+  border-radius: 5px;
+  box-shadow:
+    0 3px 0 #7a5800,
+    0 5px 10px rgba(0,0,0,0.4),
+    inset 0 1px 0 rgba(255,255,255,0.1);
+  padding: 6px 4px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+}
+.bot-lbl {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: rgba(240,192,48,0.7);
+  text-transform: uppercase;
+}
+.bot-val-gold {
+  font-size: 19px;
+  font-weight: 700;
+  background: linear-gradient(180deg, #ffe87a, #f0c030, #c8960c);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(1px 2px 0 rgba(80,40,0,0.8));
+  letter-spacing: 2px;
+  line-height: 1;
+}
+.shio-mini-img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.6));
+}
+.shio-mini-nm {
+  font-size: 12px;
+  font-weight: 700;
+  color: #ffe87a;
+  text-shadow: 1px 1px 0 #7a5800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
 }
 
 /* ── FOOTER BANNER ── */
-.c-footer-banner {
-  background: rgba(0,0,0,0.35);
-  border: 1px solid rgba(255,255,255,0.07);
-  border-radius: 8px;
-  padding: 9px 12px;
+.cc-footer {
+  background: linear-gradient(180deg, #1e6080, #0e3a50);
+  border: 1px solid #c8960c;
+  border-radius: 5px;
+  box-shadow: 0 3px 0 #7a5800, inset 0 1px 0 rgba(255,255,255,0.08);
+  padding: 6px 10px;
   text-align: center;
 }
-.c-footer-banner span {
-  font-size: 11px;
-  font-weight: 800;
+.cc-footer span {
+  font-size: 10px;
+  font-weight: 700;
   letter-spacing: 1.5px;
-  color: rgba(255,255,255,0.65);
+  color: rgba(255,255,255,0.75);
   text-transform: uppercase;
 }
-.c-footer-banner b {
-  color: #ffd700;
-  text-shadow: 0 0 6px rgba(255,215,0,0.4);
+.cc-footer b {
+  color: #f0c030;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.5);
 }
 
 /* ── IMAGE ACTIONS ── */
@@ -322,7 +406,7 @@
 
     <a href="#" onclick="history.back();return false" class="back-link">← Kembali</a>
     <div class="page-title" id="page-title">AUTO GENERATE <span>BBFS 7</span></div>
-    <div class="page-sub">Generate prediksi otomatis &amp; convert ke gambar</div>
+    <div class="page-sub">Generate prediksi otomatis &amp; convert ke gambar 1:1</div>
 
     <!-- Controls -->
     <div class="controls">
@@ -340,100 +424,96 @@
       <button class="btn btn-ghost"   onclick="resetCard()">↺ Reset</button>
     </div>
 
-    <!-- ═══════════ PREDICTION CARD ═══════════ -->
+    <!-- ═══ PREDICTION CARD 560×560 ═══ -->
     <div id="pred-card" style="display:none">
-      <div class="card-wrap">
-        <div class="card-inner">
+      <div class="card-bg"></div>
+      <div class="card-border"></div>
+      <div class="card-content">
 
-          <!-- Logo -->
-          <div class="c-logo" id="c-logo"></div>
+        <!-- Logo -->
+        <div class="cc-logo" id="cc-logo"></div>
 
-          <!-- PREDIKSI big title -->
-          <div class="prediksi-big">PREDIKSI</div>
+        <!-- Pasaran -->
+        <div class="cc-pasaran" id="cc-pasaran">PASARAN</div>
 
-          <!-- Pasaran -->
-          <div class="c-pasaran-nm" id="c-pasaran-nm">PASARAN</div>
+        <!-- Date pill -->
+        <div class="cc-date-pill"><span id="cc-date">—</span></div>
 
-          <!-- Date -->
-          <div class="c-date" id="c-date">—</div>
+        <div class="gold-div"></div>
 
-          <div class="c-divider"></div>
-
-          <!-- BBFS | AI | CB | CM -->
-          <div class="stats-row">
-            <div class="stat-box">
-              <div class="stat-lbl">BBFS</div>
-              <div class="stat-val bbfs-val" id="out-bbfs">—</div>
-            </div>
-            <div class="stat-box">
-              <div class="stat-lbl">AI</div>
-              <div class="stat-val" id="out-ai">—</div>
-            </div>
-            <div class="stat-box">
-              <div class="stat-lbl">CB</div>
-              <div class="stat-val" id="out-cb">—</div>
-            </div>
-            <div class="stat-box">
-              <div class="stat-lbl">CM</div>
-              <div class="stat-val" id="out-cm" style="font-size:14px;letter-spacing:0">—</div>
-            </div>
-          </div>
-
-          <!-- 4D / 3D / 2D BB -->
-          <div class="bb-wrap">
-            <div class="bb-row">
-              <div class="bb-lbl">4D BB</div>
-              <div class="bb-sep">|</div>
-              <div class="bb-val" id="out-4d">—</div>
-            </div>
-            <div class="bb-row">
-              <div class="bb-lbl">3D BB</div>
-              <div class="bb-sep">|</div>
-              <div class="bb-val" id="out-3d">—</div>
-            </div>
-            <div class="bb-row">
-              <div class="bb-lbl">2D BB</div>
-              <div class="bb-sep">|</div>
-              <div class="bb-val" id="out-2d">—</div>
-            </div>
-          </div>
-
-          <!-- SHIO -->
-          <div class="c-shio-row">
-            <img id="shio-img" class="shio-img-sm" src="" alt="shio" crossorigin="anonymous">
-            <div>
-              <div class="shio-lbl-sm">SHIO</div>
-              <div class="shio-nm-sm" id="shio-nm">—</div>
-            </div>
-          </div>
-
-          <!-- TWIN + ANGKA PANAS -->
-          <div class="bottom-row">
-            <div class="bot-box">
-              <div class="bot-lbl">TWIN</div>
-              <div class="bot-val" id="out-twin">—</div>
-            </div>
-            <div class="bot-box">
-              <div class="bot-lbl">ANGKA PANAS</div>
-              <div class="bot-val" id="out-panas">—</div>
-            </div>
-          </div>
-
-          <!-- Footer -->
-          <div class="c-footer-banner">
-            <span>MINIMAL DEPOSIT : <b>RP. 10.000</b> &nbsp;|&nbsp; MINIMAL BETTING : <b>100 PERAK</b></span>
-          </div>
-
+        <!-- BBFS balls -->
+        <div class="bbfs-header">
+          <div class="bbfs-header-lbl">BBFS</div>
+          <div class="bbfs-balls" id="bbfs-balls"></div>
         </div>
-      </div>
+
+        <!-- AI | CB | CM -->
+        <div class="stats-row">
+          <div class="stat-3d">
+            <div class="stat-3d-lbl">AI</div>
+            <div class="stat-3d-val" id="out-ai">—</div>
+          </div>
+          <div class="stat-3d">
+            <div class="stat-3d-lbl">CB</div>
+            <div class="stat-3d-val" id="out-cb" style="font-size:14px">—</div>
+          </div>
+          <div class="stat-3d">
+            <div class="stat-3d-lbl">CM</div>
+            <div class="stat-3d-val" id="out-cm" style="font-size:13px;letter-spacing:0">—</div>
+          </div>
+        </div>
+
+        <!-- 4D / 3D / 2D BB -->
+        <div class="bb-table-wrap">
+          <div class="bb-header-row">
+            <span>JENIS</span>
+            <span>PREDIKSI BB</span>
+          </div>
+          <div class="bb-row">
+            <div><span class="bb-badge">4D</span></div>
+            <div class="bb-val" id="out-4d">—</div>
+          </div>
+          <div class="bb-row">
+            <div><span class="bb-badge">3D</span></div>
+            <div class="bb-val" id="out-3d">—</div>
+          </div>
+          <div class="bb-row">
+            <div><span class="bb-badge">2D</span></div>
+            <div class="bb-val" id="out-2d">—</div>
+          </div>
+        </div>
+
+        <!-- SHIO | TWIN | ANGKA PANAS -->
+        <div class="bottom-3col">
+          <div class="bot-3d">
+            <div class="bot-lbl">SHIO</div>
+            <img id="shio-img" class="shio-mini-img" src="" alt="shio" crossorigin="anonymous">
+            <div class="shio-mini-nm" id="shio-nm">—</div>
+          </div>
+          <div class="bot-3d">
+            <div class="bot-lbl">TWIN</div>
+            <div class="bot-val-gold" id="out-twin">—</div>
+          </div>
+          <div class="bot-3d">
+            <div class="bot-lbl">ANGKA PANAS</div>
+            <div class="bot-val-gold" style="font-size:32px" id="out-panas">—</div>
+          </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="cc-footer">
+          <span>MINIMAL DEPOSIT : <b>RP. 10.000</b> &nbsp;|&nbsp; MINIMAL BETTING : <b>100 PERAK</b></span>
+        </div>
+
+      </div><!-- /card-content -->
     </div><!-- /pred-card -->
 
     <!-- Image Actions -->
     <div class="img-actions" id="img-actions" style="display:none">
-      <button class="btn btn-primary"  onclick="convertGambar()">📸 Convert Gambar</button>
-      <button class="btn btn-success"  id="btn-download" style="display:none" onclick="downloadGambar()">⬇️ Download</button>
-      <button class="btn btn-ghost"    id="btn-copy"     style="display:none" onclick="copyGambar()">📋 Copy</button>
-      <button class="btn btn-ghost"    id="btn-newtab"   style="display:none" onclick="openNewTab()">↗️ Tab Baru</button>
+      <button class="btn btn-primary" onclick="convertGambar()">📸 Convert Gambar</button>
+      <button class="btn btn-success" id="btn-download" style="display:none" onclick="downloadGambar()">⬇️ Download</button>
+      <button class="btn btn-ghost"   id="btn-copy"     style="display:none" onclick="copyGambar()">📋 Copy</button>
+      <button class="btn btn-ghost"   id="btn-newtab"   style="display:none" onclick="openNewTab()">↗️ Tab Baru</button>
     </div>
 
   </div>
@@ -458,14 +538,14 @@
   document.getElementById('page-title').innerHTML = 'AUTO PREDIKSI <span>' + site.name + ' — BBFS ' + type + '</span>';
 
   // Logo
-  const logoEl = document.getElementById('c-logo');
+  const logoEl = document.getElementById('cc-logo');
   if (site.logo) {
     logoEl.innerHTML = '<img src="' + site.logo + '" crossorigin="anonymous">';
   } else {
-    logoEl.innerHTML = '<div class="c-logo-text">' + site.name + '</div>';
+    logoEl.innerHTML = '<div class="cc-logo-text">' + site.name + '</div>';
   }
 
-  // Date options
+  // Dates
   const selTgl = document.getElementById('sel-tanggal');
   getDateOptions(7).forEach((opt, i) => {
     const o = document.createElement('option');
@@ -493,29 +573,43 @@
     const pred = generatePrediksi(bbfs);
     const shio = CONFIG.shio[Math.floor(Math.random() * CONFIG.shio.length)];
 
-    document.getElementById('c-pasaran-nm').textContent = pasaran;
-    document.getElementById('c-date').textContent = tanggal;
+    // Pasaran + date
+    document.getElementById('cc-pasaran').textContent = pasaran;
+    document.getElementById('cc-date').textContent    = tanggal;
 
-    document.getElementById('out-bbfs').textContent = bbfs;
+    // BBFS balls
+    const ballsEl = document.getElementById('bbfs-balls');
+    ballsEl.innerHTML = '';
+    bbfs.split('').forEach(d => {
+      const b = document.createElement('div');
+      b.className = 'bbfs-ball';
+      b.textContent = d;
+      ballsEl.appendChild(b);
+    });
+
+    // Stats
     document.getElementById('out-ai').textContent   = pred.ai;
     document.getElementById('out-cb').textContent   = pred.cb;
     document.getElementById('out-cm').textContent   = pred.cm;
 
+    // BB rows
     document.getElementById('out-4d').textContent = pred.bb4.join(' - ');
     document.getElementById('out-3d').textContent = pred.bb3.join(' - ');
     document.getElementById('out-2d').textContent = pred.bb2.join(' - ');
 
+    // Shio
     document.getElementById('shio-img').src = shio.img;
     document.getElementById('shio-nm').textContent = shio.name;
 
+    // Twin + Panas
     document.getElementById('out-twin').textContent  = pred.twin.join(' & ');
     document.getElementById('out-panas').textContent = pred.panas;
 
     document.getElementById('pred-card').style.display   = 'block';
     document.getElementById('img-actions').style.display = 'flex';
     document.getElementById('btn-download').style.display = 'none';
-    document.getElementById('btn-copy').style.display    = 'none';
-    document.getElementById('btn-newtab').style.display  = 'none';
+    document.getElementById('btn-copy').style.display     = 'none';
+    document.getElementById('btn-newtab').style.display   = 'none';
     lastDataUrl = null;
 
     document.getElementById('pred-card').scrollIntoView({ behavior:'smooth', block:'center' });
@@ -531,13 +625,13 @@
   function convertGambar() {
     const card = document.getElementById('pred-card');
     html2canvas(card, {
-      backgroundColor: '#040812',
+      backgroundColor: '#0a2535',
       scale: 2,
       useCORS: true,
       allowTaint: true,
       logging: false,
-      width: card.offsetWidth,
-      height: card.offsetHeight
+      width: 560,
+      height: 560
     }).then(canvas => {
       lastDataUrl = canvas.toDataURL('image/png');
       document.getElementById('btn-download').style.display = 'inline-flex';
