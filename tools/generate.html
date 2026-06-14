@@ -501,9 +501,14 @@
       </div><!-- /card-content -->
     </div><!-- /pred-card -->
 
+    <!-- Preview kecil hasil convert -->
+    <div id="preview-wrap" style="display:none;text-align:center;margin-bottom:16px">
+      <img id="preview-img" style="width:260px;height:260px;object-fit:cover;border-radius:12px;box-shadow:0 4px 24px rgba(0,0,0,0.6);">
+    </div>
+
     <!-- Image Actions -->
     <div class="img-actions" id="img-actions" style="display:none">
-      <button class="btn btn-primary" onclick="convertGambar()">Convert Gambar</button>
+      <button class="btn btn-primary" onclick="convertGambar()">Convert Ulang</button>
       <button class="btn btn-success" id="btn-download" style="display:none" onclick="downloadGambar()">Download</button>
       <button class="btn btn-ghost"   id="btn-copy"     style="display:none" onclick="copyGambar()">Copy</button>
       <button class="btn btn-ghost"   id="btn-newtab"   style="display:none" onclick="openNewTab()">Tab Baru</button>
@@ -634,6 +639,10 @@
       const offsetY = Math.max(0, (canvas.height - size) / 2);
       ctx.drawImage(canvas, 0, offsetY, size, size, 0, 0, size, size);
       lastDataUrl = sq.toDataURL('image/png');
+      // Tampilkan preview kecil, sembunyikan kartu besar
+      document.getElementById('pred-card').style.display = 'none';
+      document.getElementById('preview-img').src = lastDataUrl;
+      document.getElementById('preview-wrap').style.display = 'block';
       document.getElementById('btn-download').style.display = 'inline-flex';
       document.getElementById('btn-copy').style.display     = 'inline-flex';
       document.getElementById('btn-newtab').style.display   = 'inline-flex';
