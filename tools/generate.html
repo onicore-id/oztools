@@ -389,17 +389,22 @@
 <div class="page-top">
   <div class="container">
 
-    <div class="site-header">
-      <div class="logo" id="logo-title">OZ<span>TOOLS</span></div>
-      <div class="server-time">Server Time &nbsp;|&nbsp; <strong id="server-time">00:00:00</strong> &nbsp;|&nbsp; GMT +7</div>
+    <a href="#" onclick="history.back();return false" class="back-link">← Kembali</a>
+
+    <!-- Title + logo row -->
+    <div style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:4px">
+      <div>
+        <div class="page-title" id="page-title">AUTO GENERATE <span>BBFS 7</span></div>
+        <div class="page-sub" style="margin-bottom:0">Generate prediksi otomatis &amp; convert ke gambar 1:1</div>
+      </div>
+      <div style="text-align:right">
+        <div class="logo" id="logo-title" style="font-size:22px;letter-spacing:2px">OZ<span>TOOLS</span></div>
+        <div class="server-time" style="font-size:12px">Server Time &nbsp;|&nbsp; <strong id="server-time">00:00:00</strong> &nbsp;|&nbsp; GMT +7</div>
+      </div>
     </div>
 
-    <a href="#" onclick="history.back();return false" class="back-link">← Kembali</a>
-    <div class="page-title" id="page-title">AUTO GENERATE <span>BBFS 7</span></div>
-    <div class="page-sub">Generate prediksi otomatis &amp; convert ke gambar 1:1</div>
-
     <!-- Controls -->
-    <div class="controls">
+    <div class="controls" style="margin-top:20px">
       <div class="form-group">
         <label>Tanggal</label>
         <select id="sel-tanggal"></select>
