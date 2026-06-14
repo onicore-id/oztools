@@ -20,16 +20,21 @@
   font-weight: 900;
   letter-spacing: 2px;
   text-decoration: none;
-  border: 2px solid transparent;
-  transition: all 0.2s;
+  border: 1px solid rgba(255,255,255,0.09);
+  background: rgba(10,12,22,0.6);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.08);
+  transition: all 0.22s cubic-bezier(.4,0,.2,1);
   min-height: 110px;
   text-transform: uppercase;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
 }
 .site-card:hover {
+  background: rgba(187,255,0,0.08);
+  border-color: rgba(187,255,0,0.35);
+  color: #bbff00;
   transform: translateY(-3px);
-  box-shadow: 0 10px 32px rgba(0,0,0,0.6);
-  filter: brightness(1.15);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.5), 0 0 20px rgba(187,255,0,0.1);
 }
 .site-card .site-label {
   font-size: 11px;
@@ -89,8 +94,6 @@
     const a = document.createElement('a');
     a.href = 'generate.html?type=' + type + '&site=' + site.id + '&mode=' + mode;
     a.className = 'site-card';
-    a.style.background = site.gradient;
-    a.style.borderColor = site.color + '44';
     a.innerHTML = '<div class="site-label">SITUS</div><div>' + site.name + '</div>';
     grid.appendChild(a);
   });
