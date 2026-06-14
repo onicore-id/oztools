@@ -414,8 +414,8 @@
       <button class="btn btn-ghost"   onclick="resetCard()">Reset</button>
     </div>
 
-    <!-- ═══ PREDICTION CARD ═══ -->
-    <div id="pred-card" style="display:none">
+    <!-- ═══ PREDICTION CARD (offscreen, never shown to user) ═══ -->
+    <div id="pred-card" style="position:fixed;left:-9999px;top:0;pointer-events:none;opacity:0">
       <div class="card-bg">
         <img src="https://i.ibb.co/TxWCGbpT/oztools-bg.webp" crossorigin="anonymous"
              style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.45;z-index:0;">
@@ -604,20 +604,20 @@
     document.getElementById('out-twin').textContent  = pred.twin.join(' & ');
     document.getElementById('out-panas').textContent = pred.panas;
 
-    document.getElementById('pred-card').style.display   = 'block';
     document.getElementById('img-actions').style.display = 'flex';
+    document.getElementById('preview-wrap').style.display = 'none';
     document.getElementById('btn-download').style.display = 'none';
     document.getElementById('btn-copy').style.display     = 'none';
     document.getElementById('btn-newtab').style.display   = 'none';
     lastDataUrl = null;
 
-    // Auto convert after render
+    // Auto convert after render (card is offscreen, user never sees it big)
     setTimeout(() => convertGambar(), 600);
   }
 
   function resetCard() {
-    document.getElementById('pred-card').style.display   = 'none';
     document.getElementById('img-actions').style.display = 'none';
+    document.getElementById('preview-wrap').style.display = 'none';
     document.getElementById('sel-pasaran').value = '';
     lastDataUrl = null;
   }
@@ -639,8 +639,6 @@
       const offsetY = Math.max(0, (canvas.height - size) / 2);
       ctx.drawImage(canvas, 0, offsetY, size, size, 0, 0, size, size);
       lastDataUrl = sq.toDataURL('image/png');
-      // Tampilkan preview kecil, sembunyikan kartu besar
-      document.getElementById('pred-card').style.display = 'none';
       document.getElementById('preview-img').src = lastDataUrl;
       document.getElementById('preview-wrap').style.display = 'block';
       document.getElementById('btn-download').style.display = 'inline-flex';
