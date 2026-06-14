@@ -64,7 +64,7 @@ function getDateOptions(days) {
   const hari = ['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
   const bulan = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
   const options = [];
-  for (let i = 1; i <= days; i++) {
+  for (let i = 0; i <= days; i++) {
     const d = new Date();
     d.setDate(d.getDate() + i);
     const label = hari[d.getDay()] + ' | ' + d.getDate() + ' ' + bulan[d.getMonth()] + ' ' + d.getFullYear();
