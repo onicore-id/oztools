@@ -419,15 +419,8 @@
       <button class="btn btn-ghost"   onclick="resetCard()">Reset</button>
     </div>
 
-    <!-- Loading overlay -->
-    <div id="load-overlay" style="display:none;position:fixed;inset:0;z-index:999;background:rgba(5,5,7,0.85);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;flex-direction:column;gap:16px">
-      <div style="width:40px;height:40px;border:3px solid rgba(187,255,0,0.2);border-top-color:#bbff00;border-radius:50%;animation:spin 0.8s linear infinite"></div>
-      <div style="color:#bbff00;font-size:14px;font-weight:600;letter-spacing:2px">MEMPROSES...</div>
-    </div>
-    <style>@keyframes spin{to{transform:rotate(360deg)}}</style>
-
-    <!-- ═══ PREDICTION CARD ═══ -->
-    <div id="pred-card" style="display:none">
+    <!-- ═══ PREDICTION CARD (offscreen) ═══ -->
+    <div id="pred-card" style="position:fixed;left:-9999px;top:-9999px;pointer-events:none">
       <div class="card-bg">
         <img src="https://i.ibb.co/TxWCGbpT/oztools-bg.webp" crossorigin="anonymous"
              style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.45;z-index:0;">
@@ -623,11 +616,15 @@
     document.getElementById('btn-newtab').style.display   = 'none';
     lastDataUrl = null;
 
-    // Show overlay + card (hidden behind overlay), then capture
-    const overlay = document.getElementById('load-overlay');
-    overlay.style.display = 'flex';
-    document.getElementById('pred-card').style.display = 'block';
-    setTimeout(() => convertGambar(), 500);
+    // Wait for shio image to load then capture (card is offscreen)
+    const shioImg = document.getElementById('shio-img');
+    const doCapture = () => convertGambar();
+    if (shioImg.complete) {
+      setTimeout(doCapture, 100);
+    } else {
+      shioImg.onload = () => setTimeout(doCapture, 100);
+      shioImg.onerror = () => setTimeout(doCapture, 100);
+    }
   }
 
   function resetCard() {
@@ -654,9 +651,6 @@
       const offsetY = Math.max(0, (canvas.height - size) / 2);
       ctx.drawImage(canvas, 0, offsetY, size, size, 0, 0, size, size);
       lastDataUrl = sq.toDataURL('image/png');
-      // Sembunyikan overlay + kartu, tampilkan preview
-      document.getElementById('load-overlay').style.display = 'none';
-      document.getElementById('pred-card').style.display = 'none';
       document.getElementById('preview-img').src = lastDataUrl;
       document.getElementById('preview-wrap').style.display = 'block';
       document.getElementById('btn-download').style.display = 'inline-flex';
