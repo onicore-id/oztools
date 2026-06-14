@@ -527,7 +527,6 @@
   const siteId = params.get('site') || 'oz1';
   const site   = CONFIG.sites.find(s => s.id === siteId) || CONFIG.sites[0];
 
-  document.documentElement.style.setProperty('--accent', site.color);
   document.getElementById('page-title').innerHTML = 'AUTO PREDIKSI <span>' + site.name + ' — BBFS ' + type + '</span>';
 
   // Logo
@@ -554,6 +553,8 @@
     o.value = p; o.textContent = p;
     selPas.appendChild(o);
   });
+  // Auto-select first pasaran
+  if (CONFIG.pasaran.length) selPas.value = CONFIG.pasaran[0];
 
   let lastDataUrl = null;
 
@@ -605,7 +606,8 @@
     document.getElementById('btn-newtab').style.display   = 'none';
     lastDataUrl = null;
 
-    document.getElementById('pred-card').scrollIntoView({ behavior:'smooth', block:'center' });
+    // Auto convert after render
+    setTimeout(() => convertGambar(), 600);
   }
 
   function resetCard() {
@@ -659,6 +661,9 @@
     w.document.write('<img src="'+lastDataUrl+'" style="max-width:100%;display:block;margin:0 auto">');
     w.document.close();
   }
+
+  // Auto-generate + convert on load
+  window.addEventListener('load', () => setTimeout(doGenerate, 300));
 </script>
 </body>
 </html>
