@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
 <title>Generate Prediksi — OZTOOLS</title>
-<link rel="stylesheet" href="../css/style.css?v=20260616111000">
+<link rel="stylesheet" href="../css/style.css?v=20260616121100">
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Oswald:wght@600;700&family=Inter:wght@600;700;800;900&display=swap" rel="stylesheet">
 <style>
 /* ── CONTROLS ── */
@@ -403,6 +403,13 @@
       </div>
     </div>
 
+    <!-- Manual BBFS input (mode=manual only) -->
+    <div class="form-group" id="manual-bbfs-wrap" style="display:none;margin-top:20px;max-width:320px">
+      <label>BBFS &mdash; Tidak Boleh Input Nomor Kembar</label>
+      <input type="text" id="manual-bbfs" inputmode="numeric" placeholder="Contoh: 1234567" maxlength="7">
+      <div id="manual-bbfs-err" style="display:none;color:#fca5a5;font-size:12px;margin-top:6px"></div>
+    </div>
+
     <!-- Controls -->
     <div class="controls" style="margin-top:20px">
       <div class="form-group">
@@ -415,7 +422,7 @@
           <option value="">— Pilih Pasaran —</option>
         </select>
       </div>
-      <button class="btn btn-warning" onclick="doGenerate()">Generate</button>
+      <button class="btn btn-warning" id="btn-generate" onclick="doGenerate()">Generate</button>
       <button class="btn btn-ghost"   onclick="resetCard()">Reset</button>
     </div>
 
@@ -535,9 +542,20 @@
   const params = new URLSearchParams(window.location.search);
   const type   = parseInt(params.get('type')) || 7;
   const siteId = params.get('site') || 'oz1';
+  const mode   = params.get('mode') || 'auto';
   const site   = CONFIG.sites.find(s => s.id === siteId) || CONFIG.sites[0];
+  const isManual = mode === 'manual';
 
-  document.getElementById('page-title').innerHTML = 'AUTO PREDIKSI <span>' + site.name + ' — BBFS ' + type + '</span>';
+  document.getElementById('page-title').innerHTML =
+    (isManual ? 'MANUAL PREDIKSI <span>' : 'AUTO PREDIKSI <span>') + site.name + ' — BBFS ' + type + '</span>';
+
+  if (isManual) {
+    document.getElementById('manual-bbfs-wrap').style.display = 'block';
+    document.getElementById('manual-bbfs').maxLength = type;
+    document.getElementById('manual-bbfs').placeholder = 'Contoh: ' + '1234567'.slice(0, type);
+    document.getElementById('btn-generate').textContent = 'Tampilkan';
+    document.querySelector('.page-sub').textContent = 'Input BBFS sendiri & convert ke gambar 1:1';
+  }
 
   // Logo
   const logoEl = document.getElementById('cc-logo');
@@ -573,7 +591,25 @@
     if (!pasaran) { alert('Pilih pasaran dulu!'); return; }
     const tanggal = selTgl.value;
 
-    const bbfs = generateBBFS(type);
+    let bbfs;
+    if (isManual) {
+      const errEl = document.getElementById('manual-bbfs-err');
+      const input = document.getElementById('manual-bbfs').value.trim();
+      errEl.style.display = 'none';
+      if (!/^\d+$/.test(input) || input.length !== type) {
+        errEl.textContent = 'BBFS harus ' + type + ' digit angka.';
+        errEl.style.display = 'block';
+        return;
+      }
+      if (new Set(input.split('')).size !== input.length) {
+        errEl.textContent = 'BBFS tidak boleh ada nomor kembar.';
+        errEl.style.display = 'block';
+        return;
+      }
+      bbfs = input;
+    } else {
+      bbfs = generateBBFS(type);
+    }
     const pred = generatePrediksi(bbfs);
     const shio = CONFIG.shio[Math.floor(Math.random() * CONFIG.shio.length)];
 
@@ -681,8 +717,10 @@
     w.document.close();
   }
 
-  // Auto-generate + convert on load
-  window.addEventListener('load', () => setTimeout(doGenerate, 300));
+  // Auto-generate + convert on load (auto mode only — manual mode waits for user input)
+  if (!isManual) {
+    window.addEventListener('load', () => setTimeout(doGenerate, 300));
+  }
 </script>
 </body>
 </html>
