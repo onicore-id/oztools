@@ -1,7 +1,7 @@
 const CONFIG = {
-  company: "OZTOOLS",
+  company: "UP ZONE",
   tagline: "PREDIKSI",
-  copyright: "OZTOOLS",
+  copyright: "UP ZONE",
   rtpUrl: "https://rtp.example.com",
 
   credentials: [
