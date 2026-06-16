@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
 <title>Pola Gacor — OZTOOLS</title>
-<link rel="stylesheet" href="css/style.css?v=20260616122036">
+<link rel="stylesheet" href="css/style.css?v=20260616122345">
 <style>
 /* ── FORM ── */
 .pg-form { max-width: 480px; margin: 0 auto 24px; }
@@ -538,16 +538,9 @@ function saveAsJPG() {
     allowTaint: true,
     logging: false
   }).then(canvas => {
-    const size = Math.min(canvas.width, canvas.height);
-    const sq = document.createElement('canvas');
-    sq.width = size; sq.height = size;
-    const ctx = sq.getContext('2d');
-    const offsetX = Math.max(0, (canvas.width - size) / 2);
-    const offsetY = Math.max(0, (canvas.height - size) / 2);
-    ctx.drawImage(canvas, offsetX, offsetY, size, size, 0, 0, size, size);
     const link = document.createElement('a');
     link.download = `pola-gacor-oztools-${game}-${username}.png`;
-    link.href = sq.toDataURL('image/png');
+    link.href = canvas.toDataURL('image/png');
     link.click();
   }).catch(err => {
     alert('Gagal save gambar. Coba lagi.\n' + err.message);
