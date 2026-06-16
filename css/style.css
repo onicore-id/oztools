@@ -116,6 +116,12 @@ input[type=text], input[type=password], select, textarea {
 
 .logo span { color: var(--accent); }
 
+.logo-img {
+  height: 30px;
+  object-fit: contain;
+  vertical-align: middle;
+}
+
 .dot-blink {
   display: inline-block;
   width: 8px; height: 8px;
