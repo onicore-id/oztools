@@ -101,21 +101,9 @@ input[type=text], input[type=password], select, textarea {
 
 /* ── HEADER ── */
 .site-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
   text-align: center;
-  padding: 16px 20px 12px;
-  z-index: 10;
-  background: linear-gradient(180deg, rgba(5,5,7,0.85) 0%, transparent 100%);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
+  padding: 0 20px 28px;
 }
-
-/* push page content below fixed header */
-.page-top { padding-top: 100px; }
-.page { padding-top: 100px; }
 
 .logo {
   font-size: 36px;
