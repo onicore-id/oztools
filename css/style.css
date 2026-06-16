@@ -81,7 +81,7 @@ input[type=text], input[type=password], select, textarea {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 20px;
+  padding: 20px 20px 56px;
 }
 
 .page-top {
@@ -91,7 +91,7 @@ input[type=text], input[type=password], select, textarea {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 40px 20px;
+  padding: 40px 20px 56px;
 }
 
 .container {
